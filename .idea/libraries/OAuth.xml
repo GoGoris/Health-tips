@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="OAuth">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/OAuth.jar!/" />
+      <root url="jar://$PROJECT_DIR$/app/libs/OAuth.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -65,42 +65,43 @@ public class MainActivity extends Activity implements OAuthCallback { // impleme
 
 		// To make an authenticated request, you can implement OAuthRequest with your prefered way.
 		// Here, we use an URLConnection (HttpURLConnection) but you can use any library.
-        //TODO: change in Fitbit login logic
-//		data.http(data.provider.equals("facebook") ? "/me" : "/1.1/account/verify_credentials.json", new OAuthRequest() {
-//			private URL url;
-//			private URLConnection con;
-//
-//			@Override
-//			public void onSetURL(String _url) {
-//				try {
-//					url = new URL(_url);
-//					con = url.openConnection();
-//				} catch (Exception e) { e.printStackTrace(); }
-//			}
-//
-//			@Override
-//			public void onSetHeader(String header, String value) {
-//				con.addRequestProperty(header, value);
-//			}
-//
-//			@Override
-//			public void onReady() {
-//				try {
-//					BufferedReader r = new BufferedReader(new InputStreamReader(con.getInputStream()));
-//					StringBuilder total = new StringBuilder();
-//					String line;
-//					while ((line = r.readLine()) != null) {
-//					    total.append(line);
-//					}
-//					JSONObject result = new JSONObject(total.toString());
-//					textview.setText("hello, " + result.getString("name"));
-//				} catch (Exception e) { e.printStackTrace(); }
-//			}
-//
-//			@Override
-//			public void onError(String message) {
-//				textview.setText("error: " + message);
-//			}
-//		});
+        //TODO: change to Fitbit login logic
+        String _url = "https://www.fitbit.com/oauth/authorize";
+		data.http(_url, new OAuthRequest() {
+			private URL url;
+			private URLConnection con;
+
+			@Override
+			public void onSetURL(String _url) {
+				try {
+					url = new URL(_url);
+					con = url.openConnection();
+				} catch (Exception e) { e.printStackTrace(); }
+			}
+
+			@Override
+			public void onSetHeader(String header, String value) {
+				con.addRequestProperty(header, value);
+			}
+
+			@Override
+			public void onReady() {
+				try {
+					BufferedReader r = new BufferedReader(new InputStreamReader(con.getInputStream()));
+					StringBuilder total = new StringBuilder();
+					String line;
+					while ((line = r.readLine()) != null) {
+					    total.append(line);
+					}
+					JSONObject result = new JSONObject(total.toString());
+					textview.setText("hello, " + result.getString("name"));
+				} catch (Exception e) { e.printStackTrace(); }
+			}
+
+			@Override
+			public void onError(String message) {
+				textview.setText("error: " + message);
+			}
+		});
     }
 }

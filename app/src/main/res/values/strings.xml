@@ -1,3 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Health tips</string>
+
+    <string name="app_name">HealthTips</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_fit_bit_auth">FitBitAuthActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+
 </resources>

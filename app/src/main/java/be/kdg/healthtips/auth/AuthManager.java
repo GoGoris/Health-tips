@@ -1,8 +1,10 @@
 package be.kdg.healthtips.auth;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInstaller;
+import android.os.Build;
 
 import com.temboo.Library.Fitbit.OAuth.InitializeOAuth;
 import com.temboo.core.TembooException;
@@ -61,12 +63,6 @@ public class AuthManager extends Activity {
             callbackId = results.get_CallbackID();
             oAuthToken = results.get_OAuthTokenSecret();
             callBackUrl = results.get_AuthorizationURL();
-
-            SharedPreferences sharedPreferences = getSharedPreferences("keys",MODE_MULTI_PROCESS);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-
-            editor.putString("oAuthToken",oAuthToken);
-            editor.commit();
         }
 
         catch(TembooException e){
@@ -95,12 +91,17 @@ public class AuthManager extends Activity {
             input.set_ConsumerSecret(CONSUMER_SECRET);
             input.set_ConsumerKey(CONSUMER_KEY);
 
-
             FinalizeOAuthResultSet results = finOAuth.execute(input);
             authorized = true;
             fitBitAccesToken = results.get_AccessToken();
             fitBitAccesTokenSecret = results.get_AccessTokenSecret();
 
+            SharedPreferences sharedPreferences = getSharedPreferences("keys",MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.putString("FitbitAccesToken",fitBitAccesToken);
+            editor.putString("FitbitAccesTokenSecret",fitBitAccesTokenSecret);
+            editor.commit();
         }
         catch (TembooException e)
         {

@@ -30,10 +30,6 @@ public class FitBitAuthActivity extends ActionBarActivity {
         webview.getSettings().setJavaScriptEnabled(true);
         webview.loadUrl(url);
         new FinAuthATask(context).execute(AuthManager.getInstance());
-
-
-
-
     }
 
 

@@ -35,7 +35,6 @@ public class LoginActivity extends ActionBarActivity {
             new InitAuthATask(context).execute(AuthManager.getInstance());
             }
         });
-
     }
 
 

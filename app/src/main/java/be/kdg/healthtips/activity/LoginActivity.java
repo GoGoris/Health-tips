@@ -32,7 +32,7 @@ public class LoginActivity extends ActionBarActivity {
         btnStartAuth.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-            new InitAuthATask(context).execute(AuthManager.getInstance());
+            new InitAuthATask(context).execute(AuthManager.getInstance(context));
             }
         });
     }

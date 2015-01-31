@@ -2,6 +2,7 @@ package be.kdg.healthtips.auth;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInstaller;
 import android.os.Build;
@@ -22,9 +23,10 @@ import be.kdg.healthtips.session.SessionManager;
 /**
  * Created by Mathi on 24/01/2015.
  */
-public class AuthManager extends Activity {
+public class AuthManager {
 
     private static AuthManager manager;
+    private Context context;
     private static final String CONSUMER_KEY = "0dc58a7d5b1349a187b74e6e82d989f5";
     private static final String CONSUMER_SECRET = "2d234d453df949a786971a9253a22f99";
     private boolean authorized = false;
@@ -34,16 +36,16 @@ public class AuthManager extends Activity {
     private String fitBitAccesToken;
     private String fitBitAccesTokenSecret;
 
-    private AuthManager()
+    private AuthManager(Context context)
     {
-
+        this.context = context;
     }
 
-    public static AuthManager getInstance()
+    public static AuthManager getInstance(Context context)
     {
         if(manager == null)
         {
-            manager = new AuthManager();
+            manager = new AuthManager(context);
         }
         return manager;
     }
@@ -96,11 +98,11 @@ public class AuthManager extends Activity {
             fitBitAccesToken = results.get_AccessToken();
             fitBitAccesTokenSecret = results.get_AccessTokenSecret();
 
-            SharedPreferences sharedPreferences = getSharedPreferences("keys",MODE_PRIVATE);
+            SharedPreferences sharedPreferences = context.getSharedPreferences("keys",Context.MODE_MULTI_PROCESS);
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            editor.putString("FitbitAccesToken",fitBitAccesToken);
-            editor.putString("FitbitAccesTokenSecret",fitBitAccesTokenSecret);
+            editor.putString("FitbitAccessToken",fitBitAccesToken);
+            editor.putString("FitbitAccessTokenSecret",fitBitAccesTokenSecret);
             editor.commit();
         }
         catch (TembooException e)

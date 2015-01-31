@@ -1,9 +1,13 @@
 package be.kdg.healthtips.activity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import be.kdg.healthtips.R;
 
@@ -12,6 +16,23 @@ public class HomeActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("keys", Context.MODE_MULTI_PROCESS);
+        
+        String accessToken = sharedPreferences.getString("FitbitAccessToken", "");
+        String accessTokenSecret = sharedPreferences.getString("FitbitAccessTokenSecret", "");
+
+        if(accessToken.equals("")||accessTokenSecret.equals("")){
+            Intent intent = new Intent(this, LoginActivity.class);
+            this.startActivity(intent);
+        }
+
+        CharSequence text = "accesstoken: " + accessToken + "\naccesstoken secret: " + accessTokenSecret;
+        int duration = Toast.LENGTH_LONG;
+
+        Toast toast = Toast.makeText(this, text, duration);
+        toast.show();
+        //
         setContentView(R.layout.activity_home);
     }
 

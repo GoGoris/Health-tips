@@ -103,6 +103,7 @@ public class AuthManager {
 
             editor.putString("FitbitAccessToken",fitBitAccesToken);
             editor.putString("FitbitAccessTokenSecret",fitBitAccesTokenSecret);
+
             editor.commit();
         }
         catch (TembooException e)

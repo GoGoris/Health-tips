@@ -13,7 +13,6 @@ import be.kdg.healthtips.auth.AuthManager;
  * Created by Mathi on 24/01/2015.
  */
 public class InitAuthATask extends AsyncTask<AuthManager, Void, String> {
-
     private Context context;
 
     public InitAuthATask(Context context)
@@ -30,7 +29,7 @@ public class InitAuthATask extends AsyncTask<AuthManager, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        if(s != null && s.contains("https://www.fitbit.com/oauth/authorize?"))
+        if (s != null && s.contains("https://www.fitbit.com/oauth/authorize?"))
         {
             Intent intent = new Intent(context, FitBitAuthActivity.class);
             intent.putExtra("callbackUrl", s);

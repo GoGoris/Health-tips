@@ -13,7 +13,6 @@ import be.kdg.healthtips.auth.AuthManager;
  * Created by Mathi on 25/01/2015.
  */
 public class FinAuthATask extends AsyncTask<AuthManager, Void, Boolean> {
-
     private Context context;
 
     public FinAuthATask(Context context)

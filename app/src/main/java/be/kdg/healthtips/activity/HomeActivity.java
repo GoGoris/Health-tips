@@ -12,8 +12,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import be.kdg.healthtips.R;
-import be.kdg.healthtips.data.DataManager;
 import be.kdg.healthtips.task.GetStepsATask;
 
 public class HomeActivity extends ActionBarActivity {
@@ -38,8 +41,6 @@ public class HomeActivity extends ActionBarActivity {
         Toast toast = Toast.makeText(this, text, duration);
         toast.show();
 
-
-
         setContentView(R.layout.activity_home_joni);
 
         Button btnSteps = (Button) findViewById(R.id.btnSteps);
@@ -47,7 +48,7 @@ public class HomeActivity extends ActionBarActivity {
         btnSteps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new GetStepsATask(context).execute(DataManager.getInstance(context));
+                new GetStepsATask(context).execute(get6WeeksStartAndEndString());
             }
         });
 
@@ -67,6 +68,18 @@ public class HomeActivity extends ActionBarActivity {
 
     private void setGoal(){
 
+    }
+
+    private String[] get6WeeksStartAndEndString() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.WEEK_OF_YEAR, -5);
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String[] startAndEnd = new String[2];
+        startAndEnd[0] = sdf.format(cal.getTime());
+        startAndEnd[1] = sdf.format(new Date());
+        return startAndEnd;
     }
 
 

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.util.JsonReader;
 
 import com.github.mikephil.charting.data.ChartData;
+import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.temboo.Library.Fitbit.Statistics.GetTimeSeriesByDateRange;
 import com.temboo.core.TembooException;
@@ -16,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -79,12 +81,15 @@ public class DataManager {
             JSONObject obj = new JSONObject(result.get_Response());
             JSONArray arr = obj.getJSONArray("activities-log-steps");
 
+            ArrayList<Entry> entries = new ArrayList<>();
             for(int i = 0; i < arr.length(); i++)
             {
                 JSONObject o = arr.getJSONObject(i);
                 String date = o.getString("dateTime");
                 int value = o.getInt("value");
-                //TODO INFO IN GRAFIEK
+
+
+
             }
 
 

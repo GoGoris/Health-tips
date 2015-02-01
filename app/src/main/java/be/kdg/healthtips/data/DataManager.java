@@ -3,10 +3,21 @@ package be.kdg.healthtips.data;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.JsonReader;
 
+import com.github.mikephil.charting.data.ChartData;
+import com.github.mikephil.charting.data.LineData;
 import com.temboo.Library.Fitbit.Statistics.GetTimeSeriesByDateRange;
 import com.temboo.core.TembooException;
 import com.temboo.core.TembooSession;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import be.kdg.healthtips.session.SessionManager;
 
@@ -35,8 +46,17 @@ public class DataManager {
         return dataManager;
     }
 
-    public int getSteps(String startDate, String endDate) {
-        int output = -1;
+    public ChartData getSteps() {
+        LineData data = null;
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.WEEK_OF_YEAR, -5);
+        cal.set(Calendar.DAY_OF_WEEK, 2);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String startDate = sdf.format(cal.getTime());
+        String endDate = sdf.format(new Date());
+
         try {
 
             TembooSession session = SessionManager.getSession();
@@ -56,15 +76,25 @@ public class DataManager {
 
             GetTimeSeriesByDateRange.GetTimeSeriesByDateRangeResultSet result = getSteps.execute(input);
 
-            System.out.println(result.get_Response());
+            JSONObject obj = new JSONObject(result.get_Response());
+            JSONArray arr = obj.getJSONArray("activities-log-steps");
 
-
+            for(int i = 0; i < arr.length(); i++)
+            {
+                JSONObject o = arr.getJSONObject(i);
+                String date = o.getString("dateTime");
+                int value = o.getInt("value");
+                //TODO INFO IN GRAFIEK
+            }
 
 
         } catch (TembooException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        return output;
+
+        return data;
     }
 
 

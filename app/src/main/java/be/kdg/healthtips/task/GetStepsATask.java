@@ -27,8 +27,7 @@ public class GetStepsATask extends AsyncTask<DataManager, Void, Void> {
     protected Void doInBackground(DataManager... params) {
         DataManager man = params[0];
         Date date = new Date();
-        String dateString = new SimpleDateFormat("yyyy-MM-dd").format(date);
-        man.getSteps(dateString, dateString);
+        man.getSteps();
 
         return null;
     }

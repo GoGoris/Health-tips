@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">HealthTips</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_fit_bit_auth">FitBitAuthActivity</string>
@@ -7,4 +8,7 @@
     <string name="welcome_home">GOEIEDAG, U BENT INGELOGD</string>
     <string name="login">Login</string>
     <string name="healthtips">Health Tips</string>
+    <string name="title_activity_steps">StepsActivity</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

@@ -44,4 +44,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile files('libs/Fitbit-2.7.0.jar')
     compile files('libs/temboo-android-sdk-core-2.7.0.jar')
+    compile files('libs/mpandroidchartlibrary-1-7-4.jar')
 }

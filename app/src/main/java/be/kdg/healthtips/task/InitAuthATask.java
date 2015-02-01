@@ -34,7 +34,6 @@ public class InitAuthATask extends AsyncTask<AuthManager, Void, String> {
             Intent intent = new Intent(context, FitBitAuthActivity.class);
             intent.putExtra("callbackUrl", s);
             context.startActivity(intent);
-
         }
         else
         {

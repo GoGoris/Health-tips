@@ -1,5 +1,6 @@
 package be.kdg.healthtips.activity;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
@@ -15,9 +16,9 @@ import be.kdg.healthtips.auth.AuthManager;
 import be.kdg.healthtips.task.FinAuthATask;
 
 public class FitBitAuthActivity extends ActionBarActivity {
-
     private WebView webview;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     @Override
     protected void onCreate(Bundle savedInstanceState) {

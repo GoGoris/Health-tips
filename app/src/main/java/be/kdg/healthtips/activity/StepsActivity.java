@@ -19,8 +19,6 @@ public class StepsActivity extends ActionBarActivity {
         LineChart chart = (LineChart) findViewById(R.id.stepChart);
         chart.setDescription("Last 6 weeks");
         chart.setDrawYValues(true); // waardes bij de punten
-
-
     }
 
 

@@ -2,7 +2,6 @@ package be.kdg.healthtips.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -17,6 +16,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import be.kdg.healthtips.R;
+import be.kdg.healthtips.auth.FitBitTokenManager;
 import be.kdg.healthtips.task.GetStepsATask;
 
 public class HomeActivity extends ActionBarActivity {
@@ -25,17 +25,14 @@ public class HomeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Context context = this;
-        SharedPreferences sharedPreferences = getSharedPreferences("keys", Context.MODE_MULTI_PROCESS);
-        
-        String accessToken = sharedPreferences.getString("FitbitAccessToken", "");
-        String accessTokenSecret = sharedPreferences.getString("FitbitAccessTokenSecret", "");
+        FitBitTokenManager tokenManager = FitBitTokenManager.getInstance(context);
 
-        if(accessToken.equals("")||accessTokenSecret.equals("")){
+        if (tokenManager.getFitBitAccesToken().isEmpty() || tokenManager.getFitBitAccesTokenSecret().isEmpty()) {
             Intent intent = new Intent(this, LoginActivity.class);
             this.startActivity(intent);
         }
 
-        CharSequence text = "accesstoken: " + accessToken + "\naccesstoken secret: " + accessTokenSecret;
+        CharSequence text = "accesstoken: " + tokenManager.getFitBitAccesToken() + "\naccesstoken secret: " + tokenManager.getFitBitAccesTokenSecret();
         int duration = Toast.LENGTH_LONG;
 
         Toast toast = Toast.makeText(this, text, duration);

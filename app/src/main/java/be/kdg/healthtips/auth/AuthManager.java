@@ -12,7 +12,7 @@ import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthInputSet;
 import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthResultSet;
 
 
-import be.kdg.healthtips.session.SessionManager;
+import be.kdg.healthtips.session.TembooSessionManager;
 
 /**
  * Created by Mathi on 24/01/2015.
@@ -35,17 +35,14 @@ public class AuthManager {
 
     public static AuthManager getInstance(Context context)
     {
-        if(manager == null)
-        {
-            manager = new AuthManager(context);
-        }
+        if (manager == null) manager = new AuthManager(context);
         return manager;
     }
 
     public String initializeOAuth()
     {
         try {
-            TembooSession session = SessionManager.getSession();
+            TembooSession session = TembooSessionManager.getSession();
             InitializeOAuth initOAauth = new InitializeOAuth(session);
 
             InitializeOAuthInputSet input = initOAauth.newInputSet();
@@ -75,7 +72,7 @@ public class AuthManager {
     {
         try
         {
-            TembooSession session = SessionManager.getSession();
+            TembooSession session = TembooSessionManager.getSession();
             FinalizeOAuth finOAuth = new FinalizeOAuth(session);
 
             FinalizeOAuthInputSet input = finOAuth.newInputSet();

@@ -2,8 +2,6 @@ package be.kdg.healthtips.task;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.media.session.MediaSession;
 import android.os.AsyncTask;
 import android.os.Build;
 
@@ -21,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import be.kdg.healthtips.auth.FitBitTokenManager;
-import be.kdg.healthtips.session.SessionManager;
+import be.kdg.healthtips.session.TembooSessionManager;
 
 /**
  * Created by Mathi on 1/02/2015.
@@ -46,7 +44,7 @@ public class GetStepsATask extends AsyncTask<String, Void, LineData> {
         LineData data = null;
 
         try {
-            TembooSession session = SessionManager.getSession();
+            TembooSession session = TembooSessionManager.getSession();
             GetTimeSeriesByDateRange getSteps = new GetTimeSeriesByDateRange(session);
 
             GetTimeSeriesByDateRange.GetTimeSeriesByDateRangeInputSet input = getSteps.newInputSet();

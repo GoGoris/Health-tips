@@ -19,7 +19,6 @@ public class FinAuthATask extends AsyncTask<AuthManager, Void, Boolean> {
     {
         super();
         this.context = context;
-
     }
 
     @Override

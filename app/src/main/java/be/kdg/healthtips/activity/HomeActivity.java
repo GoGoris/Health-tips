@@ -7,16 +7,20 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import be.kdg.healthtips.R;
+import be.kdg.healthtips.data.DataManager;
+import be.kdg.healthtips.task.GetStepsATask;
 
 public class HomeActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        final Context context = this;
         SharedPreferences sharedPreferences = getSharedPreferences("keys", Context.MODE_MULTI_PROCESS);
         
         String accessToken = sharedPreferences.getString("FitbitAccessToken", "");
@@ -32,8 +36,19 @@ public class HomeActivity extends ActionBarActivity {
 
         Toast toast = Toast.makeText(this, text, duration);
         toast.show();
-        //
+
+
+
         setContentView(R.layout.activity_home);
+
+        Button btnSteps = (Button) findViewById(R.id.btnSteps);
+
+        btnSteps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new GetStepsATask(context).execute(DataManager.getInstance(context));
+            }
+        });
     }
 
 

@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import be.kdg.healthtips.R;
@@ -39,7 +40,7 @@ public class HomeActivity extends ActionBarActivity {
 
 
 
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_home_joni);
 
         Button btnSteps = (Button) findViewById(R.id.btnSteps);
 
@@ -49,6 +50,23 @@ public class HomeActivity extends ActionBarActivity {
                 new GetStepsATask(context).execute(DataManager.getInstance(context));
             }
         });
+
+        setTip();
+        setMotivationMessage();
+        setGoal();
+    }
+
+    private void setTip(){
+        TextView motivationText = (TextView)findViewById(R.id.motivationText);
+        motivationText.setText("veranderen van text werkt");
+    }
+
+    private void setMotivationMessage(){
+
+    }
+
+    private void setGoal(){
+
     }
 
 

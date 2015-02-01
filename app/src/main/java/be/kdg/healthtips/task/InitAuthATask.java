@@ -1,6 +1,5 @@
 package be.kdg.healthtips.task;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,9 +8,6 @@ import android.widget.Toast;
 import be.kdg.healthtips.activity.FitBitAuthActivity;
 import be.kdg.healthtips.auth.AuthManager;
 
-/**
- * Created by Mathi on 24/01/2015.
- */
 public class InitAuthATask extends AsyncTask<AuthManager, Void, String> {
     private Context context;
 

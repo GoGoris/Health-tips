@@ -22,7 +22,7 @@ import be.kdg.healthtips.auth.FitBitTokenManager;
 import be.kdg.healthtips.session.TembooSessionManager;
 
 /**
- * Created by Mathi on 1/02/2015.
+ * This Asynctask fetches the steps from the FitBit-API (using temboo)
  */
 @TargetApi(Build.VERSION_CODES.CUPCAKE)
 public class GetStepsATask extends AsyncTask<String, Void, LineData> {

@@ -5,13 +5,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import be.kdg.healthtips.activity.FitBitAuthActivity;
 import be.kdg.healthtips.activity.HomeActivity;
 import be.kdg.healthtips.auth.AuthManager;
 
-/**
- * Created by Mathi on 25/01/2015.
- */
 public class FinAuthATask extends AsyncTask<AuthManager, Void, Boolean> {
     private Context context;
 

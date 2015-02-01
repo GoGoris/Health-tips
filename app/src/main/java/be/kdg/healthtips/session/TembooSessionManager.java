@@ -3,9 +3,6 @@ package be.kdg.healthtips.session;
 import com.temboo.core.TembooException;
 import com.temboo.core.TembooSession;
 
-/**
- * Created by Mathi on 24/01/2015.
- */
 public class TembooSessionManager {
     private static TembooSession session;
     private static final String TEMBOO_KEY = "a9b42b0580914523ba9c18fae3895b21";

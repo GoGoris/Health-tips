@@ -15,7 +15,7 @@ import com.temboo.Library.Fitbit.OAuth.InitializeOAuth.InitializeOAuthResultSet;
 import be.kdg.healthtips.session.TembooSessionManager;
 
 /**
- * Created by Mathi on 24/01/2015.
+ * This class the fitbit authentication logic using the Temboo API.
  */
 public class AuthManager {
 
@@ -105,10 +105,4 @@ public class AuthManager {
 
         return authorized;
     }
-
-    public boolean isAuthorized()
-    {
-        return authorized;
-    }
-
 }

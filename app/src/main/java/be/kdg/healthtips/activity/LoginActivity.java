@@ -16,7 +16,6 @@ import be.kdg.healthtips.R;
 import be.kdg.healthtips.auth.AuthManager;
 import be.kdg.healthtips.task.InitAuthATask;
 
-
 public class LoginActivity extends ActionBarActivity {
 
     private Button btnStartAuth;

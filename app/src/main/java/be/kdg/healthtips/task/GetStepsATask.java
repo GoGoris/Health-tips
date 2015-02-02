@@ -18,7 +18,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.kdg.healthtips.auth.FitBitTokenManager;
+import be.kdg.healthtips.auth.FitbitTokenManager;
+import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.session.TembooSessionManager;
 
 /**
@@ -26,13 +27,13 @@ import be.kdg.healthtips.session.TembooSessionManager;
  */
 @TargetApi(Build.VERSION_CODES.CUPCAKE)
 public class GetStepsATask extends AsyncTask<String, Void, LineData> {
-    private FitBitTokenManager tokenManager;
+    private FitbitTokenManager tokenManager;
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public GetStepsATask(Context context)
     {
         super();
-        this.tokenManager = FitBitTokenManager.getInstance(context);
+        this.tokenManager = FitbitTokenManager.getInstance(context);
     }
 
     /**
@@ -52,9 +53,9 @@ public class GetStepsATask extends AsyncTask<String, Void, LineData> {
             input.set_AccessToken(tokenManager.getFitBitAccesToken());
             input.set_StartDate(dates[0]);
             input.set_AccessTokenSecret(tokenManager.getFitBitAccesTokenSecret());
-            input.set_ConsumerSecret(FitBitTokenManager.getConsumerSecret());
+            input.set_ConsumerSecret(FitbitTokenManager.getConsumerSecret());
             input.set_ResourcePath("activities/log/steps");
-            input.set_ConsumerKey(FitBitTokenManager.getConsumerKey());
+            input.set_ConsumerKey(FitbitTokenManager.getConsumerKey());
 
             GetTimeSeriesByDateRange.GetTimeSeriesByDateRangeResultSet result = getSteps.execute(input);
 

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +17,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import be.kdg.healthtips.R;
-import be.kdg.healthtips.auth.FitBitTokenManager;
+import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.task.GetStepsATask;
 
 public class HomeActivity extends ActionBarActivity {
@@ -25,7 +26,7 @@ public class HomeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final Context context = this;
-        FitBitTokenManager tokenManager = FitBitTokenManager.getInstance(context);
+        FitbitTokenManager tokenManager = FitbitTokenManager.getInstance(context);
 
         if (tokenManager.getFitBitAccesToken().isEmpty() || tokenManager.getFitBitAccesTokenSecret().isEmpty()) {
             Intent intent = new Intent(this, LoginActivity.class);
@@ -40,7 +41,7 @@ public class HomeActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_home_joni);
 
-        Button btnSteps = (Button) findViewById(R.id.btnSteps);
+        ImageButton btnSteps = (ImageButton) findViewById(R.id.lopenButton);
 
         btnSteps.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,12 +56,13 @@ public class HomeActivity extends ActionBarActivity {
     }
 
     private void setTip(){
-        TextView motivationText = (TextView)findViewById(R.id.motivationText);
-        motivationText.setText("veranderen van text werkt");
+        TextView tipTitle = (TextView)findViewById(R.id.tipTitle);
+        tipTitle.setText("placeholder tip title");
     }
 
     private void setMotivationMessage(){
-
+        TextView motivationText = (TextView)findViewById(R.id.motivationText);
+        motivationText.setText("placeholder motivatie text");
     }
 
     private void setGoal(){

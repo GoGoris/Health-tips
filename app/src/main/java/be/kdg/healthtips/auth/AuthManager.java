@@ -46,8 +46,8 @@ public class AuthManager {
             InitializeOAuth initOAauth = new InitializeOAuth(session);
 
             InitializeOAuthInputSet input = initOAauth.newInputSet();
-            input.set_ConsumerKey(FitBitTokenManager.getConsumerKey());
-            input.set_ConsumerSecret(FitBitTokenManager.getConsumerSecret());
+            input.set_ConsumerKey(FitbitTokenManager.getConsumerKey());
+            input.set_ConsumerSecret(FitbitTokenManager.getConsumerSecret());
 
             InitializeOAuthResultSet results = initOAauth.execute(input);
 
@@ -79,15 +79,15 @@ public class AuthManager {
 
             input.set_CallbackID(callbackId);
             input.set_OAuthTokenSecret(oAuthToken);
-            input.set_ConsumerSecret(FitBitTokenManager.getConsumerSecret());
-            input.set_ConsumerKey(FitBitTokenManager.getConsumerKey());
+            input.set_ConsumerSecret(FitbitTokenManager.getConsumerSecret());
+            input.set_ConsumerKey(FitbitTokenManager.getConsumerKey());
 
             FinalizeOAuthResultSet results = finOAuth.execute(input);
             authorized = true;
             fitBitAccesToken = results.get_AccessToken();
             fitBitAccesTokenSecret = results.get_AccessTokenSecret();
 
-            FitBitTokenManager tokenManager = FitBitTokenManager.getInstance(context);
+            FitbitTokenManager tokenManager = FitbitTokenManager.getInstance(context);
 
             tokenManager.setFitBitAccesToken(fitBitAccesToken);
             tokenManager.setFitBitAccesTokenSecret(fitBitAccesTokenSecret);

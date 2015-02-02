@@ -3,15 +3,15 @@ package be.kdg.healthtips.auth;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class FitBitTokenManager {
+public class FitbitTokenManager {
     private static final String CONSUMER_KEY = "0dc58a7d5b1349a187b74e6e82d989f5";
     private static final String CONSUMER_SECRET = "2d234d453df949a786971a9253a22f99";
     private String fitBitAccesToken;
     private String fitBitAccesTokenSecret;
-    private static FitBitTokenManager instance;
+    private static FitbitTokenManager instance;
     private SharedPreferences sharedPreferences;
 
-    public FitBitTokenManager(Context context) {
+    public FitbitTokenManager(Context context) {
         this.sharedPreferences = context.getSharedPreferences("keys", Context.MODE_MULTI_PROCESS);
     }
 
@@ -51,8 +51,8 @@ public class FitBitTokenManager {
         return fitBitAccesTokenSecret;
     }
 
-    public static FitBitTokenManager getInstance(Context context) {
-        if (instance == null) instance = new FitBitTokenManager(context);
+    public static FitbitTokenManager getInstance(Context context) {
+        if (instance == null) instance = new FitbitTokenManager(context);
         return instance;
     }
 }

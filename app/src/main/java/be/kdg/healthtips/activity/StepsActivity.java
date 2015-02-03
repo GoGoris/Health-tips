@@ -1,13 +1,24 @@
 package be.kdg.healthtips.activity;
 
+import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.utils.XLabels;
+import com.github.mikephil.charting.utils.YLabels;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 import be.kdg.healthtips.R;
+import be.kdg.healthtips.task.GetStepsATask;
 
 public class StepsActivity extends ActionBarActivity {
 
@@ -15,10 +26,38 @@ public class StepsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steps);
+        try {
+            final Context context = this;
+            LineChart chart = (LineChart) findViewById(R.id.stepChart);
+            chart.setDescription("Last 6 weeks");
+            chart.setDrawYValues(true); // waardes bij de punten
+            chart.setBackgroundColor(Color.GRAY);
+            chart.setPinchZoom(true);
+            chart.setDragEnabled(true);
+            chart.setScaleEnabled(true);
+            chart.setDrawGridBackground(false);
+            chart.setDrawVerticalGrid(false);
+            chart.setDrawHorizontalGrid(false);
+            chart.setHighlightEnabled(true);
 
-        LineChart chart = (LineChart) findViewById(R.id.stepChart);
-        chart.setDescription("Last 6 weeks");
-        chart.setDrawYValues(true); // waardes bij de punten
+
+            LineData data = new GetStepsATask(context).execute(get6WeeksStartAndEndString()).get();
+
+            XLabels xl = chart.getXLabels();
+            xl.setTextColor(Color.WHITE);
+
+            YLabels yl = chart.getYLabels();
+            yl.setTextColor(Color.WHITE);
+
+            chart.animateX(2500);
+
+            chart.setData(data);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -43,4 +82,17 @@ public class StepsActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private String[] get6WeeksStartAndEndString() {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.WEEK_OF_YEAR, -5);
+        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String[] startAndEnd = new String[2];
+        startAndEnd[0] = sdf.format(cal.getTime());
+        startAndEnd[1] = sdf.format(new Date());
+        return startAndEnd;
+    }
+
 }

@@ -46,7 +46,8 @@ public class HomeActivity extends ActionBarActivity {
         btnSteps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new GetStepsATask(context).execute(get6WeeksStartAndEndString());
+                Intent intent = new Intent(context, StepsActivity.class);
+                context.startActivity(intent);
             }
         });
 
@@ -69,17 +70,7 @@ public class HomeActivity extends ActionBarActivity {
 
     }
 
-    private String[] get6WeeksStartAndEndString() {
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.WEEK_OF_YEAR, -5);
-        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String[] startAndEnd = new String[2];
-        startAndEnd[0] = sdf.format(cal.getTime());
-        startAndEnd[1] = sdf.format(new Date());
-        return startAndEnd;
-    }
 
 
     @Override

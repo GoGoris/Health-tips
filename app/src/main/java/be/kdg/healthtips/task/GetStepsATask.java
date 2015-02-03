@@ -7,6 +7,7 @@ import android.os.Build;
 
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.temboo.Library.Fitbit.Statistics.GetTimeSeriesByDateRange;
 import com.temboo.core.TembooException;
 import com.temboo.core.TembooSession;
@@ -59,19 +60,57 @@ public class GetStepsATask extends AsyncTask<String, Void, LineData> {
 
             GetTimeSeriesByDateRange.GetTimeSeriesByDateRangeResultSet result = getSteps.execute(input);
 
-            JSONObject obj = new JSONObject(result.get_Response());
-            JSONArray arr = obj.getJSONArray("activities-log-steps");
+            data = generateLineDataFromJson(result.get_Response());
 
-            List<Entry> entries = new ArrayList<>();
-            for(int i = 0; i < arr.length(); i++)
-            {
-                JSONObject o = arr.getJSONObject(i);
-                String date = o.getString("dateTime");
-                int value = o.getInt("value");
-            }
-        } catch (TembooException | JSONException e) {
+        } catch (TembooException e) {
             e.printStackTrace();
         }
+        return data;
+    }
+
+    private LineData generateLineDataFromJson(String JsonString) {
+        LineData data = null;
+        try {
+            JSONObject obj = new JSONObject(JsonString);
+            JSONArray arr = obj.getJSONArray("activities-log-steps");
+
+            ArrayList<Entry> entries = new ArrayList<>();
+            int count = 1; //Counter for days
+            int currentWeek = 1;
+            int sum = 0; //Sum of steps in the week
+            for (int i = 0; i < arr.length(); i++) {
+                if (count % 8 == 0) {
+                    Entry entry = new Entry(sum, currentWeek - 1);
+                    entries.add(entry);
+                    sum = 0;
+                    count = 1;
+                    currentWeek++;
+                }
+            JSONObject o = arr.getJSONObject(i);
+            int value = o.getInt("value");
+            sum += value;
+            count++;
+        }
+        //Add last day --not added in the loop--
+        Entry entry = new Entry(sum, currentWeek - 1);
+        entries.add(entry);
+
+        LineDataSet set = new LineDataSet(entries, "Last 6 weeks");
+        ArrayList<LineDataSet> sets = new ArrayList<>();
+        sets.add(set);
+        ArrayList<String> XLabels = new ArrayList<>();
+        XLabels.add("1");
+        XLabels.add("2");
+        XLabels.add("3");
+        XLabels.add("4");
+        XLabels.add("5");
+        XLabels.add("6");
+        data = new LineData(XLabels, sets);
+    }
+        catch (JSONException e) {
+        e.printStackTrace();
+    }
+
         return data;
     }
 }

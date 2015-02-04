@@ -31,16 +31,16 @@ import be.kdg.healthtips.session.TembooSessionManager;
  */
 @TargetApi(Build.VERSION_CODES.CUPCAKE)
 public class GetStepsATask extends AsyncTask<String, Void, LineData> {
-    private FitbitTokenManager tokenManager;
-    private Context context;
+        private FitbitTokenManager tokenManager;
+        private Context context;
 
-    @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public GetStepsATask(Context context)
-    {
-        super();
-        this.tokenManager = FitbitTokenManager.getInstance(context);
-        this.context = context;
-    }
+        @TargetApi(Build.VERSION_CODES.CUPCAKE)
+        public GetStepsATask(Context context)
+        {
+            super();
+            this.tokenManager = FitbitTokenManager.getInstance(context);
+            this.context = context;
+        }
 
     /**
      * @param dates The start and end date to fetch data for
@@ -68,8 +68,10 @@ public class GetStepsATask extends AsyncTask<String, Void, LineData> {
             data = generateLineDataFromJson(result.get_Response());
 
         } catch (TembooException e) {
-            Intent intent = new Intent(context, LoginActivity.class);
-            context.startActivity(intent);
+            if(e.getMessage().contains("status code of 401")) {
+                Intent intent = new Intent(context, LoginActivity.class);
+                context.startActivity(intent);
+            }
             e.printStackTrace();
         }
         return data;

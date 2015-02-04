@@ -8,12 +8,26 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 import be.kdg.healthtips.R;
 import be.kdg.healthtips.auth.FitbitTokenManager;
+import be.kdg.healthtips.notifications.NotificationThrower;
+import be.kdg.healthtips.notifications.TipManager;
+import be.kdg.healthtips.task.GetDailyGoalATask;
+import be.kdg.healthtips.task.GetDaySleepATask;
+import be.kdg.healthtips.task.GetPeriodStepsATask;
+import be.kdg.healthtips.task.GetWeeklyGoalATask;
 
 public class HomeActivity extends ActionBarActivity {
 
@@ -28,11 +42,13 @@ public class HomeActivity extends ActionBarActivity {
             this.startActivity(intent);
         }
 
+        /*
         CharSequence text = "accesstoken: " + tokenManager.getFitBitAccesToken() + "\naccesstoken secret: " + tokenManager.getFitBitAccesTokenSecret();
         int duration = Toast.LENGTH_LONG;
 
         Toast toast = Toast.makeText(this, text, duration);
         toast.show();
+        */
 
         setContentView(R.layout.activity_home_joni);
 
@@ -62,11 +78,36 @@ public class HomeActivity extends ActionBarActivity {
     }
 
     private void setGoal(){
+        Integer progressToReturn = 0;
+        try {
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.DAY_OF_WEEK,cal.getActualMinimum(Calendar.DAY_OF_WEEK));
 
+            JSONObject stepsThisWeek  = new GetPeriodStepsATask(this).execute(cal.getTime(), new Date()).get();
+            JSONObject weeklyGoals = new GetWeeklyGoalATask(this).execute().get();
+            int weeklyStepGoal = weeklyGoals.getJSONObject("goals").getInt("steps");
+
+            JSONArray allSteps = stepsThisWeek.getJSONArray("activities-log-steps");
+
+            int currentWeekTotalSteps = 0;
+            for (int i = 0; i < allSteps.length(); i++) {
+                currentWeekTotalSteps += allSteps.getJSONObject(i).getInt("value");
+            }
+
+            progressToReturn = (int)Math.round((double)currentWeekTotalSteps / (double)weeklyStepGoal * 100);
+            if(progressToReturn > 100){
+                progressToReturn = 100;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBar.setProgress(progressToReturn);
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

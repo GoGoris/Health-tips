@@ -9,6 +9,7 @@
     <string name="login">Login</string>
     <string name="healthtips">Health Tips</string>
     <string name="title_activity_steps">StepsActivity</string>
+    <string name="title_activity_singletip">Tip</string>
     <string name="hello_world">Hello world!</string>
 
 </resources>

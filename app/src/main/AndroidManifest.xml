@@ -33,11 +33,14 @@
             android:name=".activity.StepsActivity"
             android:label="@string/title_activity_steps" >
         </activity>
+        <activity
+            android:name=".activity.SingleTipActivity"
+            android:label="@string/title_activity_singletip" >
+        </activity>
 
 
         <receiver android:name=".alarm.DayAlarm"/>
         <receiver android:name=".alarm.WeekAlarm"/>
-        <receiver android:name=".alarm.TwoWeekAlarm"/>
         <receiver android:name=".alarm.MonthAlarm"/>
 
         <receiver android:name=".alarm.AutoStart">

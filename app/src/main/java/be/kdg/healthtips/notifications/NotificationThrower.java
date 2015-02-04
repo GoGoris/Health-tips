@@ -9,6 +9,7 @@ import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 import java.util.Random;
@@ -23,13 +24,13 @@ public class NotificationThrower {
 
     public enum IconType{
         //TODO: verschillende icons
-        F_STEPS(R.drawable.ic_launcher), F_CALORIES(R.drawable.ic_launcher),F_WEIGHT(R.drawable.ic_launcher),T_FOOD(R.drawable.ic_launcher),T_SLEEP(R.drawable.ic_launcher),T_STEPS(R.drawable.ic_launcher),T_CALORIES(R.drawable.ic_launcher),T_WEIGHT(R.drawable.ic_launcher);
+        T_FOOD(R.drawable.foodicon),T_SLEEP(R.drawable.sleepicon),T_STEPS(R.drawable.stepsicon),T_CALORIES(R.drawable.weighticon),T_WEIGHT(R.drawable.weighticon), T_RUNNING(R.drawable.runningicon);
         private final int icon;
         IconType(int icon) { this.icon = icon; }
         public int getValue() { return icon; }
     };
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    public static void throwNotification(Context context,IconType iconType, String title, String text, Class activity){
+    public static void throwNotification(Context context,IconType iconType, String title, String text, Class activity, int tipNr){
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(iconType.getValue())
@@ -38,6 +39,12 @@ public class NotificationThrower {
 // Creates an explicit intent for an Activity in your app
 
         Intent resultIntent = new Intent(context, activity);
+
+        if(tipNr != 0) {
+            Bundle b = new Bundle();
+            b.putInt("tip", tipNr);
+            resultIntent.putExtras(b);
+        }
 
 // The stack builder object will contain an artificial back stack for the
 // started Activity.

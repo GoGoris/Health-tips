@@ -1,19 +1,19 @@
 package be.kdg.healthtips.alarm;
 
 import android.annotation.TargetApi;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 
-import be.kdg.healthtips.R;
+import org.json.JSONObject;
+
+import java.util.Date;
+import java.util.concurrent.ExecutionException;
+
 import be.kdg.healthtips.activity.HomeActivity;
 import be.kdg.healthtips.notifications.NotificationThrower;
+import be.kdg.healthtips.task.GetDataATask;
 
 /**
  * Created by school on 3/2/2015.
@@ -22,7 +22,6 @@ public class AutoStart extends BroadcastReceiver
 {
     DayAlarm dailyAlarm = new DayAlarm();
     WeekAlarm weeklyAlarm = new WeekAlarm();
-    TwoWeekAlarm biWeeklyAlarm = new TwoWeekAlarm();
     MonthAlarm monthlyAlarm = new MonthAlarm();
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -31,11 +30,22 @@ public class AutoStart extends BroadcastReceiver
     {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED"))
         {
-            NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS,"title","text",HomeActivity.class);
+            //
+            try {
+                JSONObject slaapData = new GetDataATask(context).execute(new Date(),new Date(),"sleep/minutesAsleep").get();
+
+               // int minutenGeslapen = slaapData.getJSONArray();
+
+                System.out.println("test");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+            //
 
             dailyAlarm.SetAlarm(context);
             weeklyAlarm.SetAlarm(context);
-            biWeeklyAlarm.SetAlarm(context);
             monthlyAlarm.SetAlarm(context);
         }
     }

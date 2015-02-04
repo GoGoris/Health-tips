@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="progress bar text"
+            android:text="Weekly goal progress"
             android:id="@+id/progressBarText"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="50dp" />
@@ -35,7 +35,7 @@
             android:id="@+id/progressBar"
             android:layout_gravity="center_horizontal"
             android:max="100"
-            android:progress="50"
+            android:progress="0"
             android:indeterminate="false" />
 
         <ImageButton

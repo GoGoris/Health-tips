@@ -2,6 +2,7 @@ package be.kdg.healthtips.task;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 
@@ -19,6 +20,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.kdg.healthtips.activity.LoginActivity;
+import be.kdg.healthtips.activity.StepsActivity;
 import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.session.TembooSessionManager;
@@ -29,12 +32,14 @@ import be.kdg.healthtips.session.TembooSessionManager;
 @TargetApi(Build.VERSION_CODES.CUPCAKE)
 public class GetStepsATask extends AsyncTask<String, Void, LineData> {
     private FitbitTokenManager tokenManager;
+    private Context context;
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public GetStepsATask(Context context)
     {
         super();
         this.tokenManager = FitbitTokenManager.getInstance(context);
+        this.context = context;
     }
 
     /**
@@ -63,6 +68,8 @@ public class GetStepsATask extends AsyncTask<String, Void, LineData> {
             data = generateLineDataFromJson(result.get_Response());
 
         } catch (TembooException e) {
+            Intent intent = new Intent(context, LoginActivity.class);
+            context.startActivity(intent);
             e.printStackTrace();
         }
         return data;

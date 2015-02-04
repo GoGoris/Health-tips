@@ -7,18 +7,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import be.kdg.healthtips.R;
 import be.kdg.healthtips.auth.FitbitTokenManager;
-import be.kdg.healthtips.task.GetStepsATask;
 
 public class HomeActivity extends ActionBarActivity {
 

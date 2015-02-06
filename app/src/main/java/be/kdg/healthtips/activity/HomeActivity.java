@@ -53,7 +53,6 @@ public class HomeActivity extends ActionBarActivity {
         setContentView(R.layout.activity_home_joni);
 
         ImageButton btnSteps = (ImageButton) findViewById(R.id.lopenButton);
-
         btnSteps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +60,27 @@ public class HomeActivity extends ActionBarActivity {
                 context.startActivity(intent);
             }
         });
+
+        ImageButton btnSlapen = (ImageButton) findViewById(R.id.slapenButton);
+        btnSlapen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, SlapenActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        ImageButton btnEten = (ImageButton) findViewById(R.id.etenButton);
+        btnEten.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EtenActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+
+
 
 
 

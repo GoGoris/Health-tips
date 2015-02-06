@@ -20,5 +20,7 @@
     <string name="tip_categorie_fietsen">Fietsen</string>
     <string name="tip_categorie_eten">Eten</string>
     <string name="title_activity_lopen">LopenActivity</string>
+    <string name="title_activity_slapen">SlapenActivity</string>
+    <string name="title_activity_eten">EtenActivity</string>
 
 </resources>

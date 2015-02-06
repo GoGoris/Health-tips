@@ -1,11 +1,15 @@
 package be.kdg.healthtips.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.LineData;
@@ -18,6 +22,9 @@ import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import be.kdg.healthtips.R;
+import be.kdg.healthtips.adapter.TipAdapter;
+import be.kdg.healthtips.listener.TipClickListener;
+import be.kdg.healthtips.model.Tip;
 import be.kdg.healthtips.task.GetStepsATask;
 
 public class StepsActivity extends ActionBarActivity {
@@ -57,6 +64,12 @@ public class StepsActivity extends ActionBarActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+
+        ListView lvLopen = (ListView) findViewById(R.id.lvLopen);
+        TipAdapter adapter = new TipAdapter(this, android.R.layout.simple_list_item_1, "running");
+        lvLopen.setAdapter(adapter);
+        lvLopen.setOnItemClickListener(new TipClickListener());
+
 
     }
 

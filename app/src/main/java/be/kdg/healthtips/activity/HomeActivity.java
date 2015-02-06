@@ -62,6 +62,9 @@ public class HomeActivity extends ActionBarActivity {
             }
         });
 
+
+
+
         setTip();
         setMotivationMessage();
         setGoal();

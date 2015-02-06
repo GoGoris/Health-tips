@@ -11,5 +11,14 @@
     <string name="title_activity_steps">StepsActivity</string>
     <string name="title_activity_singletip">Tip</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_tip">TipActivity</string>
+    <string name="title_activity_tip_detail">TipDetailActivity</string>
+    <string name="tip_categorie_gezondheid">Gezondheid</string>
+    <string name="tip_categorie_slaap">Slaap</string>
+    <string name="tip_categorie_stappen">Stappen</string>
+    <string name="tip_categorie_lopen">Lopen</string>
+    <string name="tip_categorie_fietsen">Fietsen</string>
+    <string name="tip_categorie_eten">Eten</string>
+    <string name="title_activity_lopen">LopenActivity</string>
 
 </resources>

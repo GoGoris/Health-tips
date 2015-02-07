@@ -3,122 +3,122 @@
         {
             "tipnr": 1,
             "titel": "Hoofdkussen",
-            "beschrijving": "Heeft U al eens overwogen een nieuw hoofdkusen aan te schaffen om beter te kunnen slapen?"
+            "beschrijving": "Heb je al eens overwogen een nieuw hoofdkussen aan te schaffen om beter te kunnen slapen?"
         },
         {
             "tipnr": 2,
             "titel": "Matras",
-            "beschrijving": "Een goede ondersteunende matras is de basis voor een goede slaaprust. Bied die van U nog genoeg ondersteuning? Matrassen zijn het best te veravangen om de 10jaar."
+            "beschrijving": "Een goed ondersteunende matras is de basis voor een goede slaaprust. Bied die van U nog genoeg ondersteuning? Je kan je matras best elke 10 jaar vervangen."
         },
         {
             "tipnr": 3,
-            "titel": "Op tijd gaan slapen",
-            "beschrijving": "Op tijd gaan slapen is belangrijk. De gemiddelde mens heeft nood aan 8u slaap per nacht. Beste momenten van de dag om te gaan slapen is dan ook tussen 22u en 22u30."
+            "titel": "Ga op tijd slapen",
+            "beschrijving": "Voldoende nachtrust is belangrijk. De gemiddelde mens heeft nood aan 8 uur slaap per nacht. Bovendien is er een gezegde : 'uren die je voor middernacht slaapt tellen dubbel'."
         },
         {
             "tipnr": 4,
-            "titel": "Weg met de gsm",
-            "beschrijving": "Wist je dat je nachtrust het meest verstoord werd door meldingen van je gsm? Leg hem daarom nooit 's nachts op je slaapkamer of zet hem gewoon uit als je gaat slapen."
+            "titel": "Weg met de GSM",
+            "beschrijving": "Wist je dat je nachtrust het meest verstoord wordt door meldingen van je gsm? Leg hem daarom nooit 's nachts op je slaapkamer of zet hem gewoon uit als je gaat slapen."
         },
         {
             "tipnr": 5,
             "titel": "Late maaltijd",
-            "beschrijving": "Een late maaltijd kan dan altijd wel samen maar de vertering hiervan duurt ook nog een hele tijd. In deze tijd is je lichaam nog actief bezig, eet daarom niet meer al te laat op de avond en zware maaltijd maar neem een stuk fruit ter vervanging"
+            "beschrijving": "Het verteren van een maaltijd door de maag duurt 3 uur. Eet dus laat op de 's avonds geen zware maaltijd meer. Je kan een stuk fruit eten in de plaats."
         },
         {
             "tipnr": 6,
             "titel": "Film kijken in bed",
-            "beschrijving": "Een TV scherm zend een hoop signalen naar de ogen, hierdoor zijn de hersenen nog heel actief en deze blijven ook nog een tijd daarna bezig met de verwerking ervan. Lees daarom liever een boek en gun je ogen en hersenen de rust die ze verdienen."
+            "beschrijving": "Door het kijken naar een scherm zijn de hersenen erg actief en blijven deze ook na de film nog bezig met de verwerking ervan. Lees daarom beter een boek en gun je ogen en hersenen de rust die ze verdienen."
         }
     ],
     "steps": [
         {
             "tipnr": 7,
             "titel": "Je wekker vroeger zetten",
-            "beschrijving": "Heb je al eens geprobeerd van Uw wekker 15minuten eerder te zetten? op die tijd kan je 's morgens 2 toertjes proberen te lopen"
+            "beschrijving": "Heb je al geprobeerd om je wekker 15 minuten vroeger te zetten? Zo kan je 's morgens nog een stuk gaan wandelen."
         },
         {
             "tipnr": 8,
             "titel": "Drive throughs",
-            "beschrijving": "Ga in plaats van langs de drive through gewoon binnen je koffie en ontbijt halen, zo doe je weer een aantal stappen per dag meer."
+            "beschrijving": "Ga in plaats van langs de drive-through gewoon binnen je koffie en ontbijt halen, zo zet je weer enkele stappen extra."
         },
         {
             "tipnr": 9,
             "titel": "Auto parkeren",
-            "beschrijving": "Parkeer je wagen aan het einde van de straat in plaats van recht voor de deur, zo doe je elke dag ook weer een aantal extra stappen."
+            "beschrijving": "Parkeer je wagen aan het einde van de straat in plaats van recht voor de deur, zo zet je elke dag weer weer enkele stappen meer."
         }
     ],
     "running": [
         {
             "tipnr": 9,
             "titel": "Daag jezelf uit",
-            "beschrijving": "Daag jezelf uit om x maal per week te gaan lopen. Leg dit doel wel binnen je eigen vermogen en bouw dit langzaam aan op"
+            "beschrijving": "Daag jezelf uit om enkele malen per week te gaan lopen. Leg dit doel wel binnen je eigen vermogen en bouw dit langzaamaan op."
         },
         {
             "tipnr": 10,
             "titel": "Loop samen",
-            "beschrijving": "Zoek een persoon of een groep die op een gelijk niveau zit qua conditie of beter dan dat van jezelf en ga samen een aantal keer per week of maand lopen. Zo zal u zichzelf overtreffen door de competitie."
+            "beschrijving": "Zoek een persoon of een groep die een gelijk niveau of beter heeft als jij. Ga samen een aantal keer per week of maand lopen. Zo zal je jezelf overtreffen dankzij de competitie."
         },
         {
             "tipnr": 11,
-            "titel": "Stel doelen",
-            "beschrijving": "Stel voor jezelf doelen in per week, maand of jaar die je graag zou willen halen en ga er dan voor om deze te halen en je conditie te verbeteren."
+            "titel": "Definiëer doelen",
+            "beschrijving": "Maak voor jezelf week-, maand- en jaardoelen die je graag zou halen."
         }
     ],
     "biking": [
         {
             "tipnr": 12,
             "titel": "Naar het werk",
-            "beschrijving": "Ga in plaats van met de auto naar het werk met de fiets. Dit is niet enkel goed voor het milieu maar ook voor je conditie en algemene gezondheid."
+            "beschrijving": "Gebruik in plaats van de auto de fiets om naar het werk te gaan. Dit is niet enkel goed voor het milieu maar ook voor je conditie en algemene gezondheid. Bovendien geven heel wat bedrijven in België een fietsvergoeding."
         },
         {
             "tipnr": 13,
-            "titel": "Uitstappen in de buurt",
-            "beschrijving": "Voor toffe plekken te ontdekken moet je meestal minder ver van huis gaan dan je denkt. Neem daarom de fiets in je vrije tijd en ga je buurt ontdekken."
+            "titel": "Ontdek leuke plaatsen in jou buurt",
+            "beschrijving": "Om toffe plaatsen te ontdekken moet je vaak minder ver van huis als je denkt. Neem daarom in je vrije tijd je fiets en ga de buurt ontdekken."
         },
         {
             "tipnr": 14,
             "titel": "Winkelen",
-            "beschrijving": "Ga in de plaats van 1 maal per week met de auto al je boodschappen te doen iedere dag met de fiets naar de winkel en de bakker. Zo heb je er weer extra kilometers op zitten maar zal je ook zien dat je bewuster, verser en gezonder zal winkelen"
+            "beschrijving": "Ga in plaats van éénmaal per week met de auto naar de supermarkt, iedere dag met de fiets naar de winkel en de bakker. Zo doe je weer extra kilometers en zal je ook zien dat je bewuster en gezonder zal winkelen"
         }
     ],
     "food": [
         {
             "tipnr": 15,
-            "titel": "Eet gezonder",
-            "beschrijving": "Eet in plaats van veel fastfood ook eens een stuk fruit of een pastagerecht."
+            "titel": "Eet gezond",
+            "beschrijving": "Let op je voeding. Eet in plaats van veel fastfood ook eens een stuk fruit of een pastagerecht."
         },
         {
             "tipnr": 16,
             "titel": "Eet minder",
-            "beschrijving": "De meeste mensen eten omdat ze er zin in hebben. Eet in de plaats tot je merkt dat je honger over is, al de rest is teveel."
+            "beschrijving": "Vaak eten mensen niet omdat ze honger hebben maar omdat ze daar zin in hebben. Hierdoor eet je echter veel meer dan je nodig hebt. Eet tot je merkt dat je honger over is en niet meer, je zal je veel beter voelen"
         },
         {
             "tipnr": 17,
             "titel": "Ontbijt rules",
-            "beschrijving": "Het gezegde 'het ontbijt is de belangrijkste maaltijd van de dag' klopt ook inderdaad. Zo kan je beter 's ochtends meer eten en de hoeveelheden afbouwen naar de avond toe."
+            "beschrijving": "Ken je dit gezegde al? 'Eet 's morgens als een keizer, 's middags als een koning en 's avonds als een bedelaar'. Je kan beter 's morgens meer eten en de hoeveelheden afbouwen naar de avond toe."
         },
         {
             "tipnr": 18,
             "titel": "An apple a day",
-            "beschrijving": "Een appel of een ander stuk fruit bevatten belangrijke vitamines die ons lichaam kan gebruiken. Eet dus als vier-uurtje of 's avonds voor de televisie een stuk fruit in de plaats van een snack of een zak chips."
+            "beschrijving": "Een appel of een ander stuk fruit bevatten belangrijke vitamines die ons lichaam kan gebruiken. Eet dus als vier-uurtje of 's avonds voor de televisie een stuk fruit in plaats van een snack of een zak chips."
         },
         {
             "tipnr": 19,
             "titel": "Eet gevarieerder",
-            "beschrijving": "Gevarieerd eten is belangrijk voor de spijsvertering maar het is ook minder saai."
+            "beschrijving": "Gevarieerd eten is belangrijk voor de spijsvertering. Je ontdekt bovendien elke dag nieuwe smaken."
         },
         {
             "tipnr": 20,
             "titel": "Kook zelf",
-            "beschrijving": "Als je zelf kookt in plaats van een voorgeprepareerde maaltijd te verorberen is dit in de meeste gevallen gezonder en minder vet."
+            "beschrijving": "Zelf koken is meestal gezonder als een voorgeprepareerde maaltijd. Dit hangt natuurlijk wel af van het recept."
         }
     ],
     "gezondheid": [
         {
             "tipnr": 21,
             "titel": "Stop met roken",
-            "beschrijving": "Roken is schadelijk voor de gezondheid, zo kan je beter gaan fitnessen of gaan sporten."
+            "beschrijving": "Roken is erg schadelijk voor de gezondheid en tast je conditie aan."
         },
         {
             "tipnr": 22,
@@ -128,12 +128,7 @@
         {
             "tipnr": 23,
             "titel": "Probeer sporten uit",
-            "beschrijving": "Sporten kan je het beste uithouden door iets te vinden dat je graag doet of door veel afwisseling. Zoek daarom een sport die je graag doet en wissel deze af met andere sporten tussendoor."
-        },
-        {
-            "tipnr": 24,
-            "titel": "Eet gezonder",
-            "beschrijving": ""
+            "beschrijving": "Sporten kan je het beste volhouden door een sport te vinden die je graag doet. Probeer daarom nieuwe sporten uit en wissel regelmatig af om te vinden welke sport voor jou het beste werkt."
         }
     ]
 }

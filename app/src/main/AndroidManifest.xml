@@ -48,16 +48,17 @@
         </receiver>
 
         <activity
-            android:name=".activity.TipDetailActivity"
-            android:label="@string/title_activity_tip_detail" >
-        </activity>
-        <activity
             android:name=".activity.SlapenActivity"
             android:label="@string/title_activity_slapen" >
         </activity>
         <activity
             android:name=".activity.EtenActivity"
             android:label="@string/title_activity_eten" >
+        </activity>
+
+        <activity
+            android:name=".activity.TipDetailActivity"
+            android:label="@string/title_activity_tip_detail" >
         </activity>
     </application>
 

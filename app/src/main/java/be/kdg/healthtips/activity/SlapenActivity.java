@@ -1,24 +1,19 @@
 package be.kdg.healthtips.activity;
 
+import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,7 +24,7 @@ import be.kdg.healthtips.adapter.TipAdapter;
 import be.kdg.healthtips.listener.TipClickListener;
 import be.kdg.healthtips.task.GetDataATask;
 
-public class SlapenActivity extends ActionBarActivity {
+public class SlapenActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,21 +70,6 @@ public class SlapenActivity extends ActionBarActivity {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     private Object[] getParameterArray() {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.WEEK_OF_YEAR, -5);
@@ -102,8 +82,7 @@ public class SlapenActivity extends ActionBarActivity {
         return startAndEnd;
     }
 
-    private BarData getBarDataFromJson(JSONObject jsonData)
-    {
+    private BarData getBarDataFromJson(JSONObject jsonData) {
         BarData barData = null;
 
         try {
@@ -141,15 +120,12 @@ public class SlapenActivity extends ActionBarActivity {
             XLabels.add("5");
             XLabels.add("6");
             barData = new BarData(XLabels, sets);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         return barData;
     }
-
 
 
 }

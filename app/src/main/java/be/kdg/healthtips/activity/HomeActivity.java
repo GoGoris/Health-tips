@@ -1,22 +1,19 @@
 package be.kdg.healthtips.activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
@@ -25,16 +22,10 @@ import be.kdg.healthtips.R;
 import be.kdg.healthtips.alarm.DayAlarm;
 import be.kdg.healthtips.alarm.WeekAlarm;
 import be.kdg.healthtips.auth.FitbitTokenManager;
-import be.kdg.healthtips.notifications.NotificationThrower;
-import be.kdg.healthtips.notifications.TipManager;
-import be.kdg.healthtips.task.GetDailyGoalATask;
-import be.kdg.healthtips.task.GetDaySleepATask;
 import be.kdg.healthtips.task.GetPeriodStepsATask;
 import be.kdg.healthtips.task.GetWeeklyGoalATask;
-import be.kdg.healthtips.task.GetWeightATask;
-import be.kdg.healthtips.task.GetWeightGoalATask;
 
-public class HomeActivity extends ActionBarActivity {
+public class HomeActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +76,6 @@ public class HomeActivity extends ActionBarActivity {
         });
 
 
-
-
-
-
-
         setTip();
         setMotivationMessage();
         setGoal();
@@ -101,23 +87,23 @@ public class HomeActivity extends ActionBarActivity {
         weeklyAlarm.SetAlarmIn2Minutes(context);
     }
 
-    private void setTip(){
-        TextView tipTitle = (TextView)findViewById(R.id.tipTitle);
+    private void setTip() {
+        TextView tipTitle = (TextView) findViewById(R.id.tipTitle);
         tipTitle.setText("placeholder tip title");
     }
 
-    private void setMotivationMessage(){
-        TextView motivationText = (TextView)findViewById(R.id.motivationText);
+    private void setMotivationMessage() {
+        TextView motivationText = (TextView) findViewById(R.id.motivationText);
         motivationText.setText("placeholder motivatie text");
     }
 
-    private void setGoal(){
+    private void setGoal() {
         Integer progressToReturn = 0;
         try {
             Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.DAY_OF_WEEK,cal.getActualMinimum(Calendar.DAY_OF_WEEK));
+            cal.set(Calendar.DAY_OF_WEEK, cal.getActualMinimum(Calendar.DAY_OF_WEEK));
 
-            JSONObject stepsThisWeek  = new GetPeriodStepsATask(this).execute(cal.getTime(), new Date()).get();
+            JSONObject stepsThisWeek = new GetPeriodStepsATask(this).execute(cal.getTime(), new Date()).get();
             JSONObject weeklyGoals = new GetWeeklyGoalATask(this).execute().get();
             int weeklyStepGoal = weeklyGoals.getJSONObject("goals").getInt("steps");
 
@@ -127,8 +113,8 @@ public class HomeActivity extends ActionBarActivity {
                 currentWeekTotalSteps += allSteps.getJSONObject(i).getInt("value");
             }
 
-            progressToReturn = (int)Math.round((double)currentWeekTotalSteps / (double)weeklyStepGoal * 100);
-            if(progressToReturn > 100){
+            progressToReturn = (int) Math.round((double) currentWeekTotalSteps / (double) weeklyStepGoal * 100);
+            if (progressToReturn > 100) {
                 progressToReturn = 100;
             }
         } catch (InterruptedException e) {
@@ -137,10 +123,10 @@ public class HomeActivity extends ActionBarActivity {
             e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setProgress(progressToReturn);
     }
 
@@ -149,20 +135,5 @@ public class HomeActivity extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_home, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="230dp" />
 
-    <ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ListView
         android:id="@+id/lvLopen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

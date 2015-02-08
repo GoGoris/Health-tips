@@ -22,6 +22,7 @@ import be.kdg.healthtips.R;
 import be.kdg.healthtips.alarm.DayAlarm;
 import be.kdg.healthtips.alarm.WeekAlarm;
 import be.kdg.healthtips.auth.FitbitTokenManager;
+import be.kdg.healthtips.notifications.SpecificNotificationThrower;
 import be.kdg.healthtips.task.GetPeriodStepsATask;
 import be.kdg.healthtips.task.GetWeeklyGoalATask;
 
@@ -80,11 +81,15 @@ public class HomeActivity extends Activity {
         setMotivationMessage();
         setGoal();
 
+        /*
         DayAlarm dailyAlarm = new DayAlarm();
         WeekAlarm weeklyAlarm = new WeekAlarm();
 
         dailyAlarm.SetAlarmIn2Minutes(context);
         weeklyAlarm.SetAlarmIn2Minutes(context);
+*/
+        SpecificNotificationThrower.throwBadFoodHabit(this);
+        SpecificNotificationThrower.throwYouHaveEatenBeforeSporting(this);
     }
 
     private void setTip() {

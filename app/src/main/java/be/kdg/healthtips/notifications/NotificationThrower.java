@@ -30,6 +30,8 @@ public class NotificationThrower {
         IconType(int icon) { this.icon = icon; }
         public int getValue() { return icon; }
     };
+
+
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void throwNotification(Context context,IconType iconType, String title, String text, Class activity, int tipNr){
         NotificationCompat.Builder mBuilder =
@@ -42,6 +44,47 @@ public class NotificationThrower {
         Intent resultIntent = new Intent(context, activity);
 
         resultIntent.putExtra("tipnr",tipNr);
+
+
+        Random r = new Random();
+
+// The stack builder object will contain an artificial back stack for the
+// started Activity.
+// This ensures that navigating backward from the Activity leads out of
+// your application to the Home screen.
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+// Adds the back stack for the Intent (but not the Intent itself)
+        stackBuilder.addParentStack(activity);
+// Adds the Intent that starts the Activity to the top of the stack
+        stackBuilder.addNextIntent(resultIntent);
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(
+                        r.nextInt(100000),
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+        NotificationManager mNotificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+// mId allows you to update the notification later on.
+
+        int randomnr = r.nextInt(10000);
+        mBuilder.setAutoCancel(true);
+        mNotificationManager.notify(randomnr,mBuilder.build());
+    }
+
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    public static void throwSpecificTip(Context context,IconType iconType, String title, String text, Class activity, String tipTitle, String tipText){
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(context)
+                        .setSmallIcon(iconType.getValue())
+                        .setContentTitle(title)
+                        .setContentText(text);
+// Creates an explicit intent for an Activity in your app
+
+        Intent resultIntent = new Intent(context, activity);
+
+        resultIntent.putExtra("titel",tipTitle);
+        resultIntent.putExtra("beschrijving",tipText);
 
 
         Random r = new Random();

@@ -14,5 +14,6 @@
         android:id="@+id/lblTitle"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="84dp" />
+        android:layout_marginTop="84dp"
+        android:gravity="center_horizontal" />
 </RelativeLayout>

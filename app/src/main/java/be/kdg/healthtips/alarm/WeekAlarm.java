@@ -22,9 +22,6 @@ import be.kdg.healthtips.task.GetDailyGoalATask;
 import be.kdg.healthtips.task.GetPeriodStepsATask;
 import be.kdg.healthtips.task.GetWeeklyGoalATask;
 
-/**
- * Created by school on 4/2/2015.
- */
 public class WeekAlarm extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -92,11 +89,7 @@ public class WeekAlarm extends BroadcastReceiver {
             }
 
             System.out.println("stop");
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }
     }

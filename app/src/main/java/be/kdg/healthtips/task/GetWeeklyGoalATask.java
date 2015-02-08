@@ -17,9 +17,6 @@ import be.kdg.healthtips.activity.LoginActivity;
 import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.session.TembooSessionManager;
 
-/**
- * Created by school on 4/2/2015.
- */
 public class GetWeeklyGoalATask extends AsyncTask<Void, Void, JSONObject> {
     private FitbitTokenManager tokenManager;
     private Context context;
@@ -33,7 +30,7 @@ public class GetWeeklyGoalATask extends AsyncTask<Void, Void, JSONObject> {
 
     @Override
     protected JSONObject doInBackground(Void... params) {
-        TembooSession session = null;
+        TembooSession session;
         JSONObject jsonToReturn = null;
         try {
             session = TembooSessionManager.getSession();

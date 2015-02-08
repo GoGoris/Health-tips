@@ -30,7 +30,7 @@ public class GetDailyGoalATask extends AsyncTask<Void, Void, JSONObject> {
 
     @Override
     protected JSONObject doInBackground(Void... params) {
-        TembooSession session = null;
+        TembooSession session;
         JSONObject jsonToReturn = null;
         try {
             session = TembooSessionManager.getSession();

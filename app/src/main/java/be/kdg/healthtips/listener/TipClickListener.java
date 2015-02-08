@@ -8,9 +8,6 @@ import android.widget.AdapterView;
 import be.kdg.healthtips.activity.TipDetailActivity;
 import be.kdg.healthtips.model.Tip;
 
-/**
- * Created by Mathi on 6/02/2015.
- */
 public class TipClickListener implements AdapterView.OnItemClickListener {
 
     @Override

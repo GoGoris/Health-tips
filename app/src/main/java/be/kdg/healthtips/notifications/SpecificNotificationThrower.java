@@ -4,9 +4,6 @@ import android.content.Context;
 
 import be.kdg.healthtips.activity.SingleTipActivity;
 
-/**
- * Created by school on 8/2/2015.
- */
 public class SpecificNotificationThrower {
     public static void throwYouHaveEatenBeforeSleeping(Context context) {
         //wanneer je ziet dat de gebruiker heeft gegeten voor het slapen gaan

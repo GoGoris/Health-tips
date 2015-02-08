@@ -6,9 +6,6 @@ import java.util.Random;
 
 import be.kdg.healthtips.activity.TipDetailActivity;
 
-/**
- * Created by school on 4/2/2015.
- */
 public class TipManager {
     public static void throwRandomStepTip(String reden, Context context) {
         throwTipOfSubject("steps", reden, "Get more steps", context, NotificationThrower.IconType.T_STEPS);

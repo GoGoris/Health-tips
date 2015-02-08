@@ -6,18 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-import org.json.JSONObject;
-
-import java.util.Date;
-import java.util.concurrent.ExecutionException;
-
-import be.kdg.healthtips.activity.HomeActivity;
-import be.kdg.healthtips.notifications.NotificationThrower;
-import be.kdg.healthtips.task.GetDataATask;
-
-/**
- * Created by school on 3/2/2015.
- */
 public class AutoStart extends BroadcastReceiver
 {
     DayAlarm dailyAlarm = new DayAlarm();

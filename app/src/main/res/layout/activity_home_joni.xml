@@ -40,7 +40,7 @@
 
         <ImageButton
             android:layout_width="fill_parent"
-            android:layout_height="120dp"
+            android:layout_height="0dp"
             android:id="@+id/lopenButton"
             android:layout_weight="0" />
 
@@ -63,13 +63,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bottomRelativeLayout"
-        android:layout_alignParentBottom="true"
-        >
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
@@ -91,13 +84,8 @@
                 android:id="@+id/tipTitle"
                 android:layout_weight=".70"
                 android:layout_gravity="center"
-                android:paddingLeft="20dp"
+                android:paddingStart="20dp"
                 />
 
         </LinearLayout>
-
-
-
-
-    </RelativeLayout>
 </RelativeLayout>

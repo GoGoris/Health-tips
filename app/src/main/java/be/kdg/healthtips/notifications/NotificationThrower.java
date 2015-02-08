@@ -13,9 +13,6 @@ import java.util.Random;
 
 import be.kdg.healthtips.R;
 
-/**
- * Created by school on 4/2/2015.
- */
 public class NotificationThrower {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
@@ -57,8 +54,6 @@ public class NotificationThrower {
         mBuilder.setAutoCancel(true);
         mNotificationManager.notify(randomnr, mBuilder.build());
     }
-
-    ;
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static void throwSpecificTip(Context context, IconType iconType, String title, String text, Class activity, String tipTitle, String tipText) {

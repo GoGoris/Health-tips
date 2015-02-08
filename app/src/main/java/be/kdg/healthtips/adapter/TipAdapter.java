@@ -9,28 +9,14 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 import be.kdg.healthtips.model.Tip;
 
-/**
- * Created by Mathi on 6/02/2015.
- */
 public class TipAdapter extends ArrayAdapter<Tip> {
-
-
-
     public TipAdapter(Context context, int resource, String categorie) {
         super(context, resource);
         addTipsByCategorie(categorie, context);
-
-
     }
-
-
 
     public void addTipsByCategorie(String arrayName, Context context) {
         try {
@@ -60,10 +46,8 @@ public class TipAdapter extends ArrayAdapter<Tip> {
                 }
             }
 
-        } catch (IOException ex) {
+        } catch (IOException | JSONException ex) {
             ex.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
     }
 

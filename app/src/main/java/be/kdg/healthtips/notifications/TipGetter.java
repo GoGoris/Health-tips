@@ -13,10 +13,8 @@ import java.util.Random;
 
 import be.kdg.healthtips.model.Tip;
 
-/**
- * Created by school on 8/2/2015.
- */
 public class TipGetter {
+    @SuppressWarnings("Result of 'InputStream.read()' is ignored")
     public int getRandomTipNr(String arrayName, Context context) {
         try {
             InputStream is = context.getAssets().open("tips.json");
@@ -36,10 +34,8 @@ public class TipGetter {
 
             JSONObject tip = array.getJSONObject(index);
             return tip.getInt("tipnr");
-        } catch (IOException ex) {
+        } catch (IOException | JSONException ex) {
             ex.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
         return 0;
     }
@@ -72,12 +68,9 @@ public class TipGetter {
                 }
             }
 
-
             return tipToReturn;
-        } catch (IOException ex) {
+        } catch (IOException | JSONException ex) {
             ex.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
         return tipToReturn;
     }

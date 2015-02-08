@@ -17,9 +17,6 @@ import be.kdg.healthtips.activity.LoginActivity;
 import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.session.TembooSessionManager;
 
-/**
- * Created by school on 5/2/2015.
- */
 public class GetWeightGoalATask extends AsyncTask<Void, Void, JSONObject> {
     private FitbitTokenManager tokenManager;
     private Context context;

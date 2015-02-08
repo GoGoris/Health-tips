@@ -20,9 +20,6 @@ import be.kdg.healthtips.activity.LoginActivity;
 import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.session.TembooSessionManager;
 
-/**
- * Created by school on 4/2/2015.
- */
 public class GetDataATask extends AsyncTask<Object, Void, JSONObject> {
     private FitbitTokenManager tokenManager;
     private Context context;

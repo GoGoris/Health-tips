@@ -19,8 +19,6 @@ import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import be.kdg.healthtips.R;
-import be.kdg.healthtips.alarm.DayAlarm;
-import be.kdg.healthtips.alarm.WeekAlarm;
 import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.notifications.SpecificNotificationThrower;
 import be.kdg.healthtips.task.GetPeriodStepsATask;
@@ -122,13 +120,7 @@ public class HomeActivity extends Activity {
             if (progressToReturn > 100) {
                 progressToReturn = 100;
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
+        } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }
         ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);

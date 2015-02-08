@@ -1,21 +1,10 @@
 package be.kdg.healthtips.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-/**
- * Created by Mathi on 6/02/2015.
- */
 public class Tip {
 
     private int nummer;
     private String titel;
     private String beschrijving;
-
-    public Tip()
-    {
-
-    }
 
     public Tip(int nummer, String titel, String beschrijving) {
         this.nummer = nummer;

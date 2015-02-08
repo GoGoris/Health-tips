@@ -23,7 +23,7 @@ import be.kdg.healthtips.task.GetDaySleepATask;
 import be.kdg.healthtips.task.GetWeightATask;
 import be.kdg.healthtips.task.GetWeightGoalATask;
 
-public class DayAlarm extends BroadcastReceiver{
+public class DayAlarm extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "Day Alarm", Toast.LENGTH_LONG).show();
@@ -31,43 +31,46 @@ public class DayAlarm extends BroadcastReceiver{
         checkDayWeight(context);
     }
 
-    private void checkDaySleep(Context context){
+    private void checkDaySleep(Context context) {
         try {
-            JSONObject slaapData = new GetDaySleepATask(context).execute().get();
-            JSONArray sleepArray = slaapData.getJSONArray("sleep");
+            JSONObject sleepData = new GetDaySleepATask(context).execute().get();
+            JSONArray sleepArray = sleepData.getJSONArray("sleep");
             JSONObject mainSleep = null;
             for (int i = 0; i < sleepArray.length(); i++) {
                 if (sleepArray.getJSONObject(i).getBoolean("isMainSleep")) {
                     mainSleep = sleepArray.getJSONObject(i);
                 }
             }
+            if (mainSleep == null) {
+                System.err.println("No data, maybe there is no Temboo credit anymore for this month?");
+            } else {
+                int totalMinutesAsleep = mainSleep.getInt("minutesAsleep");
+                int totalMinutesToFallAsleep = mainSleep.getInt("minutesToFallAsleep");
+                int totalTimesWakenUp = mainSleep.getInt("awakeningsCount");
+                int sleepEfficiency = mainSleep.getInt("efficiency");
 
-            int totalMinutesAsleep = mainSleep.getInt("minutesAsleep");
-            int totalMinutesToFallAsleep = mainSleep.getInt("minutesToFallAsleep");
-            int totalTimesWakenUp = mainSleep.getInt("awakeningsCount");
-            int sleepEfficiency = mainSleep.getInt("efficiency");
+                if (totalTimesWakenUp > 10) {
+                    TipManager.throwRandomSleepTip("Je bent vorige nacht " + totalTimesWakenUp + " keer wakker geworden", context);
+                }
 
-            if (totalTimesWakenUp > 10) {
-                TipManager.throwRandomSleepTip("Je bent vorige nacht " + totalTimesWakenUp + " keer wakker geworden", context);
+                if (totalMinutesToFallAsleep > 20) {
+                    TipManager.throwRandomFallingASleepTip("Het duurde vorige nacht " + totalMinutesToFallAsleep + " minuten om in slaap te vallen", context);
+                }
+
+                if (totalMinutesAsleep / 60 < 6) {
+                    TipManager.throwRandomSleepTip("Je hebt vorige nacht kort geslapen", context);
+                }
+
+                if (sleepEfficiency < 90) {
+                    TipManager.throwRandomSleepTip("U slaap efficiency vorige nacht was niet zo goed", context);
+                }
             }
-
-            if (totalMinutesToFallAsleep > 20) {
-                TipManager.throwRandomFallingASleepTip("Het duurde vorige nacht " + totalMinutesToFallAsleep + " minuten om in slaap te vallen", context);
-            }
-
-            if (totalMinutesAsleep / 60 < 6) {
-                TipManager.throwRandomSleepTip("Je hebt vorige nacht kort geslapen",context);
-            }
-
-            if (sleepEfficiency < 90) {
-                TipManager.throwRandomSleepTip("U slaap efficiency vorige nacht was niet zo goed", context);
-            }
-        } catch (Exception e){
+        } catch (ExecutionException | InterruptedException | JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void checkDayWeight(Context context){
+    private void checkDayWeight(Context context) {
         try {
             JSONObject weight = new GetWeightATask(context).execute(new Date()).get();
             JSONObject weightGoal = new GetWeightGoalATask(context).execute().get();
@@ -75,26 +78,26 @@ public class DayAlarm extends BroadcastReceiver{
 
             boolean weightChange = false;
             double huidigGewicht = 0;
-            double vorigeGewicht = 0;
+            double vorigeGewicht;
 
             double gewichtGoal;
 
             double bmi = 0;
-            double vorigeBmi = 0;
+            double vorigeBmi;
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String currentDate = sdf.format(new Date());
 
             JSONArray allWeights = weight.getJSONArray("weight");
             for (int i = 0; i < allWeights.length(); i++) {
-                if(currentDate.equals(allWeights.getJSONObject(i).getString("date"))){
+                if (currentDate.equals(allWeights.getJSONObject(i).getString("date"))) {
                     weightChange = true;
                     huidigGewicht = allWeights.getJSONObject(i).getDouble("weight");
                     bmi = allWeights.getJSONObject(i).getDouble("bmi");
                 }
             }
 
-            if(weightChange){
+            if (weightChange) {
                 try {
                     gewichtGoal = weightGoal.getJSONObject("goal").getDouble("weight");
 
@@ -102,44 +105,38 @@ public class DayAlarm extends BroadcastReceiver{
                     vorigeGewicht = allWeights.getJSONObject(allWeights.length() - 2).getDouble("weight");
                     vorigeBmi = allWeights.getJSONObject(allWeights.length() - 2).getDouble("bmi");
 
-                    if(huidigGewicht < vorigeGewicht){
-                        NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_WEIGHT, "Gefeliciteerd","U bent afgevallen",HomeActivity.class,0);
+                    if (huidigGewicht < vorigeGewicht) {
+                        NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_WEIGHT, "Gefeliciteerd", "U bent afgevallen", HomeActivity.class, 0);
                     }
 
-                    if(huidigGewicht <= gewichtGoal && vorigeGewicht > gewichtGoal){
-                        NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_WEIGHT, "Gefeliciteerd","U heeft uw gewicht goal behaald",HomeActivity.class,0);
+                    if (huidigGewicht <= gewichtGoal && vorigeGewicht > gewichtGoal) {
+                        NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_WEIGHT, "Gefeliciteerd", "U heeft uw gewicht goal behaald", HomeActivity.class, 0);
                     }
 
-                    if(huidigGewicht <= gewichtGoal + 3 && vorigeGewicht > gewichtGoal && huidigGewicht > gewichtGoal){
-                        TipManager.throwRandomGewichtTip("U heeft uw goal bijna gehaald nog " + Math.abs(huidigGewicht - gewichtGoal) + " kg te gaan",context);
+                    if (huidigGewicht <= gewichtGoal + 3 && vorigeGewicht > gewichtGoal && huidigGewicht > gewichtGoal) {
+                        TipManager.throwRandomGewichtTip("U heeft uw goal bijna gehaald nog " + Math.abs(huidigGewicht - gewichtGoal) + " kg te gaan", context);
                     }
 
-                    if(vorigeBmi >= 25 && bmi < 25){
-                        NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_WEIGHT, "Gefeliciteerd","U heeft een normale bmi behaald",HomeActivity.class,0);
+                    if (vorigeBmi >= 25 && bmi < 25) {
+                        NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_WEIGHT, "Gefeliciteerd", "U heeft een normale bmi behaald", HomeActivity.class, 0);
                     }
 
-
-
-                    if(vorigeGewicht < gewichtGoal + 3 && huidigGewicht > gewichtGoal + 3){
-                        TipManager.throwRandomGewichtTip("U bent buiten uw gewenst gewicht beland",context);
+                    if (vorigeGewicht < gewichtGoal + 3 && huidigGewicht > gewichtGoal + 3) {
+                        TipManager.throwRandomGewichtTip("U bent buiten uw gewenst gewicht beland", context);
                     }
 
-                    if(huidigGewicht > vorigeGewicht){
-                        TipManager.throwRandomGewichtTip("U bijgekomen, probeer af te vallen",context);
+                    if (huidigGewicht > vorigeGewicht) {
+                        TipManager.throwRandomGewichtTip("Ai, je bent bijgekomen. Probeer af te vallen", context);
                     }
 
-                    if(vorigeBmi <= 25 && bmi > 25){
-                        TipManager.throwRandomGewichtTip("U bent buiten de normale bmi beland",context);
+                    if (vorigeBmi <= 25 && bmi > 25) {
+                        TipManager.throwRandomGewichtTip("Je BMI zit niet meer goed.", context);
                     }
-                }catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+        } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }
     }
@@ -153,7 +150,7 @@ public class DayAlarm extends BroadcastReceiver{
         calendar.setTimeInMillis(System.currentTimeMillis());
 
         calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.MINUTE, 0);
 
         am.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, pi);
@@ -168,7 +165,7 @@ public class DayAlarm extends BroadcastReceiver{
         calendar.setTimeInMillis(System.currentTimeMillis());
 
 
-        calendar.add(Calendar.SECOND,10);
+        calendar.add(Calendar.SECOND, 10);
 
         am.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, pi);

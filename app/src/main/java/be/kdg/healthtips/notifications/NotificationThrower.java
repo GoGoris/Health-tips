@@ -69,7 +69,6 @@ public class NotificationThrower {
         resultIntent.putExtra("titel", tipTitle);
         resultIntent.putExtra("beschrijving", tipText);
 
-
         Random r = new Random();
 
 // The stack builder object will contain an artificial back stack for the

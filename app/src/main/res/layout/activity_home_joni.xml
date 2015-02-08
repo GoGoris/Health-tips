@@ -17,7 +17,7 @@
             android:text="motivation message"
             android:id="@+id/motivationText"
             android:layout_gravity="center_horizontal"
-            />
+            android:layout_marginTop="@dimen/activity_vertical_margin" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,38 +63,30 @@
         </LinearLayout>
     </LinearLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bottomRelativeLayout"
+        android:id="@+id/tipLayout"
         android:layout_alignParentBottom="true"
         >
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_weight=".30"
+            android:id="@+id/tipButton"/>
+
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/tipLayout"
-            >
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Tip title"
+            android:id="@+id/tipTitle"
+            android:layout_weight=".70"
+            android:layout_gravity="center"
+            android:paddingStart="20dp"
+            />
 
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="100dp"
-                android:layout_weight=".30"
-                android:id="@+id/tipButton"/>
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Tip title"
-                android:id="@+id/tipTitle"
-                android:layout_weight=".70"
-                android:layout_gravity="center"
-                android:paddingStart="20dp"
-                />
-
-        </LinearLayout>
-
-    </RelativeLayout>
+    </LinearLayout>
 </RelativeLayout>

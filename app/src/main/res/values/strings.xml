@@ -18,5 +18,6 @@
     <string name="title_activity_slapen">Slaap</string>
     <string name="title_activity_eten">Voeding</string>
     <string name="login_wait_text">Please wait…</string>
+    <string name="please_wait">Even geduld alsjeblieft,\nje wordt ingelogd…</string>
 
 </resources>

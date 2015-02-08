@@ -37,7 +37,6 @@ public class TipManager {
     }
 
     private static void throwTipOfSubject(String subject, String reden, String titel, Context context, NotificationThrower.IconType typeIcon) {
-        //TipAdapter adapter = new TipAdapter(context, android.R.layout.simple_list_item_1, subject);
         TipGetter tipGetter = new TipGetter();
         int tipnr = tipGetter.getRandomTipNr(subject, context);
         NotificationThrower.throwNotification(context, typeIcon, titel, reden, TipDetailActivity.class, tipnr);

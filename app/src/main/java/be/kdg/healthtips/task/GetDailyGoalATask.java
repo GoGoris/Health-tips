@@ -17,20 +17,17 @@ import be.kdg.healthtips.activity.LoginActivity;
 import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.session.TembooSessionManager;
 
-/**
- * Created by school on 4/2/2015.
- */
-public class GetDailyGoalATask extends AsyncTask<Void,Void,JSONObject> {
+public class GetDailyGoalATask extends AsyncTask<Void, Void, JSONObject> {
     private FitbitTokenManager tokenManager;
     private Context context;
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public GetDailyGoalATask(Context context)
-    {
+    public GetDailyGoalATask(Context context) {
         super();
         this.tokenManager = FitbitTokenManager.getInstance(context);
         this.context = context;
     }
+
     @Override
     protected JSONObject doInBackground(Void... params) {
         TembooSession session = null;
@@ -50,7 +47,7 @@ public class GetDailyGoalATask extends AsyncTask<Void,Void,JSONObject> {
 
             jsonToReturn = new JSONObject(result.get_Response());
         } catch (TembooException e) {
-            if(e.getMessage().contains("status code of 401")) {
+            if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }

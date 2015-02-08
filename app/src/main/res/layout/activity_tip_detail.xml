@@ -3,15 +3,14 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:paddingTop="@dimen/tip_detail_margin_top"
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="346dp"
-        android:layout_height="504dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/detailbeschrijving"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
         android:layout_weight="1"
         android:ellipsize="none"
         android:scrollHorizontally="false"

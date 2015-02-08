@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <color name="primary">#42a5f5</color>
+    <color name="primary_dark">#1565c0</color>
+    <color name="accent">#00e5ff</color>
+    <color name="graph_backgroundcolor">#64b5f6</color>
+</resources>

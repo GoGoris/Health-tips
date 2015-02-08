@@ -18,11 +18,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import be.kdg.healthtips.activity.LoginActivity;
-import be.kdg.healthtips.activity.StepsActivity;
-import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.session.TembooSessionManager;
 
@@ -31,16 +28,15 @@ import be.kdg.healthtips.session.TembooSessionManager;
  */
 @TargetApi(Build.VERSION_CODES.CUPCAKE)
 public class GetStepsATask extends AsyncTask<String, Void, LineData> {
-        private FitbitTokenManager tokenManager;
-        private Context context;
+    private FitbitTokenManager tokenManager;
+    private Context context;
 
-        @TargetApi(Build.VERSION_CODES.CUPCAKE)
-        public GetStepsATask(Context context)
-        {
-            super();
-            this.tokenManager = FitbitTokenManager.getInstance(context);
-            this.context = context;
-        }
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    public GetStepsATask(Context context) {
+        super();
+        this.tokenManager = FitbitTokenManager.getInstance(context);
+        this.context = context;
+    }
 
     /**
      * @param dates The start and end date to fetch data for
@@ -68,7 +64,7 @@ public class GetStepsATask extends AsyncTask<String, Void, LineData> {
             data = generateLineDataFromJson(result.get_Response());
 
         } catch (TembooException e) {
-            if(e.getMessage().contains("status code of 401")) {
+            if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }
@@ -95,30 +91,29 @@ public class GetStepsATask extends AsyncTask<String, Void, LineData> {
                     count = 1;
                     currentWeek++;
                 }
-            JSONObject o = arr.getJSONObject(i);
-            int value = o.getInt("value");
-            sum += value;
-            count++;
-        }
-        //Add last day --not added in the loop--
-        Entry entry = new Entry(sum, currentWeek - 1);
-        entries.add(entry);
+                JSONObject o = arr.getJSONObject(i);
+                int value = o.getInt("value");
+                sum += value;
+                count++;
+            }
+            //Add last day --not added in the loop--
+            Entry entry = new Entry(sum, currentWeek - 1);
+            entries.add(entry);
 
-        LineDataSet set = new LineDataSet(entries, "Last 6 weeks");
-        ArrayList<LineDataSet> sets = new ArrayList<>();
-        sets.add(set);
-        ArrayList<String> XLabels = new ArrayList<>();
-        XLabels.add("1");
-        XLabels.add("2");
-        XLabels.add("3");
-        XLabels.add("4");
-        XLabels.add("5");
-        XLabels.add("6");
-        data = new LineData(XLabels, sets);
-    }
-        catch (JSONException e) {
-        e.printStackTrace();
-    }
+            LineDataSet set = new LineDataSet(entries, "Last 6 weeks");
+            ArrayList<LineDataSet> sets = new ArrayList<>();
+            sets.add(set);
+            ArrayList<String> XLabels = new ArrayList<>();
+            XLabels.add("1");
+            XLabels.add("2");
+            XLabels.add("3");
+            XLabels.add("4");
+            XLabels.add("5");
+            XLabels.add("6");
+            data = new LineData(XLabels, sets);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         return data;
     }

@@ -11,8 +11,7 @@ import be.kdg.healthtips.auth.AuthManager;
 public class FinAuthATask extends AsyncTask<AuthManager, Void, Boolean> {
     private Context context;
 
-    public FinAuthATask(Context context)
-    {
+    public FinAuthATask(Context context) {
         super();
         this.context = context;
     }
@@ -25,13 +24,10 @@ public class FinAuthATask extends AsyncTask<AuthManager, Void, Boolean> {
 
     @Override
     protected void onPostExecute(Boolean authorized) {
-        if(authorized)
-        {
+        if (authorized) {
             Intent intent = new Intent(context, HomeActivity.class);
             context.startActivity(intent);
-        }
-        else
-        {
+        } else {
             // TODO ERROR
             CharSequence text = "Unable to login!";
             int duration = Toast.LENGTH_SHORT;

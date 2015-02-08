@@ -6,16 +6,12 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 
-import com.temboo.Library.Fitbit.Body.GetBodyWeight;
 import com.temboo.Library.Fitbit.Body.GetBodyWeightGoal;
 import com.temboo.core.TembooException;
 import com.temboo.core.TembooSession;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import be.kdg.healthtips.activity.LoginActivity;
 import be.kdg.healthtips.auth.FitbitTokenManager;
@@ -24,13 +20,12 @@ import be.kdg.healthtips.session.TembooSessionManager;
 /**
  * Created by school on 5/2/2015.
  */
-public class GetWeightGoalATask extends AsyncTask<Void,Void,JSONObject> {
+public class GetWeightGoalATask extends AsyncTask<Void, Void, JSONObject> {
     private FitbitTokenManager tokenManager;
     private Context context;
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public GetWeightGoalATask(Context context)
-    {
+    public GetWeightGoalATask(Context context) {
         super();
         this.tokenManager = FitbitTokenManager.getInstance(context);
         this.context = context;
@@ -54,7 +49,7 @@ public class GetWeightGoalATask extends AsyncTask<Void,Void,JSONObject> {
 
             jsonToReturn = new JSONObject(result.get_Response());
         } catch (TembooException e) {
-            if(e.getMessage().contains("status code of 401")) {
+            if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }

@@ -3,6 +3,7 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
+    android:paddingTop="@dimen/activity_slapen_padding_top"
     android:orientation="vertical"
     tools:context="be.kdg.healthtips.activity.SlapenActivity">
 

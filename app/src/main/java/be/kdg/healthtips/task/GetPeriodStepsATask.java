@@ -14,7 +14,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import be.kdg.healthtips.activity.LoginActivity;
@@ -24,13 +23,12 @@ import be.kdg.healthtips.session.TembooSessionManager;
 /**
  * Created by school on 4/2/2015.
  */
-public class GetPeriodStepsATask extends AsyncTask<Date,Void,JSONObject> {
+public class GetPeriodStepsATask extends AsyncTask<Date, Void, JSONObject> {
     private FitbitTokenManager tokenManager;
     private Context context;
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public GetPeriodStepsATask(Context context)
-    {
+    public GetPeriodStepsATask(Context context) {
         super();
         this.tokenManager = FitbitTokenManager.getInstance(context);
         this.context = context;
@@ -62,7 +60,7 @@ public class GetPeriodStepsATask extends AsyncTask<Date,Void,JSONObject> {
             jsonToReturn = new JSONObject(result.get_Response());
 
         } catch (TembooException e) {
-            if(e.getMessage().contains("status code of 401")) {
+            if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }

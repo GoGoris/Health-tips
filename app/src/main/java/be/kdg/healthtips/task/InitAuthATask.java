@@ -11,8 +11,7 @@ import be.kdg.healthtips.auth.AuthManager;
 public class InitAuthATask extends AsyncTask<AuthManager, Void, String> {
     private Context context;
 
-    public InitAuthATask(Context context)
-    {
+    public InitAuthATask(Context context) {
         super();
         this.context = context;
     }
@@ -25,14 +24,11 @@ public class InitAuthATask extends AsyncTask<AuthManager, Void, String> {
 
     @Override
     protected void onPostExecute(String s) {
-        if (s != null && s.contains("https://www.fitbit.com/oauth/authorize?"))
-        {
+        if (s != null && s.contains("https://www.fitbit.com/oauth/authorize?")) {
             Intent intent = new Intent(context, FitBitAuthActivity.class);
             intent.putExtra("callbackUrl", s);
             context.startActivity(intent);
-        }
-        else
-        {
+        } else {
             // TODO ERROR !
             CharSequence text = "Error while getting callback url!";
             int duration = Toast.LENGTH_SHORT;

@@ -1,14 +1,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:orientation="vertical" >
+    android:paddingTop="@dimen/activity_steps_padding_top"
+    android:orientation="vertical"
+    tools:context="be.kdg.healthtips.activity.StepsActivity">
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/stepChart"
         android:layout_width="wrap_content"
-        android:layout_height="230dp" />
+        android:layout_height="230dp"
+        android:layout_marginBottom="@dimen/graph_bottom_margin"
+        />
 
     <ListView
         android:id="@+id/lvLopen"

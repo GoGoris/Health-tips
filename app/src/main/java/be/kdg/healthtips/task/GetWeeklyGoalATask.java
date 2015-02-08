@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 
-import com.temboo.Library.Fitbit.Activities.GetActivityDailyGoals;
 import com.temboo.Library.Fitbit.Activities.GetActivityWeeklyGoals;
 import com.temboo.core.TembooException;
 import com.temboo.core.TembooSession;
@@ -21,17 +20,17 @@ import be.kdg.healthtips.session.TembooSessionManager;
 /**
  * Created by school on 4/2/2015.
  */
-public class GetWeeklyGoalATask extends AsyncTask<Void,Void,JSONObject> {
+public class GetWeeklyGoalATask extends AsyncTask<Void, Void, JSONObject> {
     private FitbitTokenManager tokenManager;
     private Context context;
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public GetWeeklyGoalATask(Context context)
-    {
+    public GetWeeklyGoalATask(Context context) {
         super();
         this.tokenManager = FitbitTokenManager.getInstance(context);
         this.context = context;
     }
+
     @Override
     protected JSONObject doInBackground(Void... params) {
         TembooSession session = null;
@@ -51,7 +50,7 @@ public class GetWeeklyGoalATask extends AsyncTask<Void,Void,JSONObject> {
 
             jsonToReturn = new JSONObject(result.get_Response());
         } catch (TembooException e) {
-            if(e.getMessage().contains("status code of 401")) {
+            if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }

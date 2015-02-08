@@ -1,14 +1,12 @@
 package be.kdg.healthtips.task;
 
 import android.annotation.TargetApi;
-import android.content.AbstractThreadedSyncAdapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 
 import com.temboo.Library.Fitbit.Body.GetBodyWeight;
-import com.temboo.Library.Fitbit.Statistics.GetTimeSeriesByDateRange;
 import com.temboo.core.TembooException;
 import com.temboo.core.TembooSession;
 
@@ -25,13 +23,12 @@ import be.kdg.healthtips.session.TembooSessionManager;
 /**
  * Created by school on 5/2/2015.
  */
-public class GetWeightATask extends AsyncTask<Date,Void,JSONObject> {
+public class GetWeightATask extends AsyncTask<Date, Void, JSONObject> {
     private FitbitTokenManager tokenManager;
     private Context context;
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public GetWeightATask(Context context)
-    {
+    public GetWeightATask(Context context) {
         super();
         this.tokenManager = FitbitTokenManager.getInstance(context);
         this.context = context;
@@ -62,7 +59,7 @@ public class GetWeightATask extends AsyncTask<Date,Void,JSONObject> {
             jsonToReturn = new JSONObject(result.get_Response());
 
         } catch (TembooException e) {
-            if(e.getMessage().contains("status code of 401")) {
+            if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }

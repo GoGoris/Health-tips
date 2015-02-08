@@ -53,13 +53,9 @@ public class SlapenActivity extends Activity {
             chart.animateY(2500);
             chart.setData(barData);
 
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -126,6 +122,4 @@ public class SlapenActivity extends Activity {
 
         return barData;
     }
-
-
 }

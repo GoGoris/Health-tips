@@ -17,17 +17,12 @@ import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import be.kdg.healthtips.activity.HomeActivity;
-import be.kdg.healthtips.activity.SingleTipActivity;
 import be.kdg.healthtips.notifications.NotificationThrower;
 import be.kdg.healthtips.notifications.TipManager;
-import be.kdg.healthtips.task.GetDataATask;
 import be.kdg.healthtips.task.GetDaySleepATask;
 import be.kdg.healthtips.task.GetWeightATask;
 import be.kdg.healthtips.task.GetWeightGoalATask;
 
-/**
- * Created by school on 4/2/2015.
- */
 public class DayAlarm extends BroadcastReceiver{
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -67,7 +62,7 @@ public class DayAlarm extends BroadcastReceiver{
             if (sleepEfficiency < 90) {
                 TipManager.throwRandomSleepTip("U slaap efficiency vorige nacht was niet zo goed", context);
             }
-        }catch (Exception e){
+        } catch (Exception e){
             e.printStackTrace();
         }
     }

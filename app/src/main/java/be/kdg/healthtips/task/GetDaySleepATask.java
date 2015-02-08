@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 
 import com.temboo.Library.Fitbit.Sleep.GetSleep;
-import com.temboo.Library.Fitbit.Statistics.GetTimeSeriesByDateRange;
 import com.temboo.core.TembooException;
 import com.temboo.core.TembooSession;
 
@@ -30,8 +29,7 @@ public class GetDaySleepATask extends AsyncTask<Void, Void, JSONObject> {
     private Context context;
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public GetDaySleepATask(Context context)
-    {
+    public GetDaySleepATask(Context context) {
         super();
         this.tokenManager = FitbitTokenManager.getInstance(context);
         this.context = context;
@@ -51,7 +49,7 @@ public class GetDaySleepATask extends AsyncTask<Void, Void, JSONObject> {
 
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            c.add(Calendar.DAY_OF_YEAR,-1);
+            c.add(Calendar.DAY_OF_YEAR, -1);
 
             input.set_Date(sdf.format(new Date()));
 
@@ -65,7 +63,7 @@ public class GetDaySleepATask extends AsyncTask<Void, Void, JSONObject> {
 
             jsonToReturn = new JSONObject(result.get_Response());
         } catch (TembooException e) {
-            if(e.getMessage().contains("status code of 401")) {
+            if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }

@@ -44,7 +44,7 @@ public class TipGetter {
         return 0;
     }
 
-    public Tip getTipByNr(int tipNr,Context context){
+    public Tip getTipByNr(int tipNr, Context context) {
         Tip tipToReturn = null;
         try {
             InputStream is = context.getAssets().open("tips.json");
@@ -59,14 +59,14 @@ public class TipGetter {
             JSONObject firstObject = new JSONObject(json);
             Iterator<?> keys = firstObject.keys();
 
-            while( keys.hasNext() ){
-                String key = (String)keys.next();
-                if( firstObject.get(key) instanceof JSONArray ){
-                    JSONArray subjectArray = (JSONArray)firstObject.get(key);
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                if (firstObject.get(key) instanceof JSONArray) {
+                    JSONArray subjectArray = (JSONArray) firstObject.get(key);
                     for (int j = 0; j < subjectArray.length(); j++) {
                         JSONObject tipObject = subjectArray.getJSONObject(j);
-                        if(tipObject.getInt("tipnr") == tipNr){
-                            tipToReturn = new Tip(tipObject.getInt("tipnr"),tipObject.getString("titel"),tipObject.getString("beschrijving"));
+                        if (tipObject.getInt("tipnr") == tipNr) {
+                            tipToReturn = new Tip(tipObject.getInt("tipnr"), tipObject.getString("titel"), tipObject.getString("beschrijving"));
                         }
                     }
                 }

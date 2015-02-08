@@ -14,7 +14,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import be.kdg.healthtips.activity.LoginActivity;
@@ -29,13 +28,11 @@ public class GetDataATask extends AsyncTask<Object, Void, JSONObject> {
     private Context context;
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public GetDataATask(Context context)
-    {
+    public GetDataATask(Context context) {
         super();
         this.tokenManager = FitbitTokenManager.getInstance(context);
         this.context = context;
     }
-
 
     @Override
     //1 begindatum 2 einddatum 3 resource
@@ -51,10 +48,8 @@ public class GetDataATask extends AsyncTask<Object, Void, JSONObject> {
 
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-            input.set_StartDate(sdf.format((Date)params[0]));
-            input.set_EndDate(sdf.format((Date)params[1]));
-
-
+            input.set_StartDate(sdf.format((Date) params[0]));
+            input.set_EndDate(sdf.format((Date) params[1]));
 
             input.set_AccessTokenSecret(tokenManager.getFitBitAccesTokenSecret());
             input.set_ConsumerSecret(FitbitTokenManager.getConsumerSecret());
@@ -63,13 +58,12 @@ public class GetDataATask extends AsyncTask<Object, Void, JSONObject> {
 
             input.set_ConsumerKey(FitbitTokenManager.getConsumerKey());
 
-
             GetTimeSeriesByDateRange.GetTimeSeriesByDateRangeResultSet result = getData.execute(input);
 
             String data = result.get_Response();
             jsonToReturn = new JSONObject(data);
         } catch (TembooException e) {
-            if(e.getMessage().contains("status code of 401")) {
+            if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }

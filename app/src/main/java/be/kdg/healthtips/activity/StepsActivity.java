@@ -3,7 +3,9 @@ package be.kdg.healthtips.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.widget.ListView;
 
@@ -28,12 +30,13 @@ public class StepsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steps);
+        Drawable background = getResources().getDrawable(R.drawable.graph_background);
         try {
             final Context context = this;
             LineChart chart = (LineChart) findViewById(R.id.stepChart);
             chart.setDescription("Last 6 weeks");
             chart.setDrawYValues(true); // waardes bij de punten
-            chart.setBackgroundColor(Color.GRAY);
+            chart.setBackground(background);
             chart.setPinchZoom(true);
             chart.setDragEnabled(true);
             chart.setScaleEnabled(true);
@@ -41,7 +44,6 @@ public class StepsActivity extends Activity {
             chart.setDrawVerticalGrid(false);
             chart.setDrawHorizontalGrid(false);
             chart.setHighlightEnabled(true);
-
 
             LineData data = new GetStepsATask(context).execute(get6WeeksStartAndEndString()).get();
 
@@ -54,9 +56,7 @@ public class StepsActivity extends Activity {
             chart.animateX(2500);
 
             chart.setData(data);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
         }
 
@@ -64,8 +64,6 @@ public class StepsActivity extends Activity {
         TipAdapter adapter = new TipAdapter(this, android.R.layout.simple_list_item_1, "running");
         lvLopen.setAdapter(adapter);
         lvLopen.setOnItemClickListener(new TipClickListener());
-
-
     }
 
     @Override

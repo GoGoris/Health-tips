@@ -40,7 +40,6 @@
 
         <receiver android:name=".alarm.DayAlarm" />
         <receiver android:name=".alarm.WeekAlarm" />
-        <receiver android:name=".alarm.MonthAlarm" />
         <receiver android:name=".alarm.AutoStart" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

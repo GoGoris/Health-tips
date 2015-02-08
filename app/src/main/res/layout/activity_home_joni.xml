@@ -40,7 +40,7 @@
 
         <ImageButton
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
+            android:layout_height="120dp"
             android:id="@+id/lopenButton"
             android:layout_weight="0" />
 
@@ -62,6 +62,13 @@
                 android:id="@+id/etenButton"/>
         </LinearLayout>
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottomRelativeLayout"
+        android:layout_alignParentBottom="true"
+        >
 
         <LinearLayout
             android:orientation="horizontal"
@@ -88,4 +95,6 @@
                 />
 
         </LinearLayout>
+
+    </RelativeLayout>
 </RelativeLayout>

@@ -4,4 +4,6 @@
     <color name="primary_dark">#1565c0</color>
     <color name="accent">#00e5ff</color>
     <color name="graph_backgroundcolor">#64b5f6</color>
+    <color name="graph_past">#EEECEC</color>
+    <color name="graph_current">#FF0000</color>
 </resources>

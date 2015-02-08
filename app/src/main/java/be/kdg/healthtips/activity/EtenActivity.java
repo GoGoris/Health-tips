@@ -2,6 +2,7 @@ package be.kdg.healthtips.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ListView;
@@ -25,11 +26,12 @@ import be.kdg.healthtips.task.GetDataATask;
 
 public class EtenActivity extends Activity {
 
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eten);
-        final Context context = this;
+        context = this;
 
         ListView lvEten = (ListView) findViewById(R.id.lvEten);
         TipAdapter adapter = new TipAdapter(this, android.R.layout.simple_list_item_1, "food");
@@ -42,8 +44,10 @@ public class EtenActivity extends Activity {
             JSONObject obj = new GetDataATask(context).execute(getParameterArray()).get();
             System.out.println(obj.toString());
             BarData barData = getBarDataFromJson(obj);
-
+            chart.setBackground(getResources().getDrawable(R.drawable.graph_background));
+            chart.setDrawBarShadow(false);
             chart.setDrawYValues(true);
+            chart.setDrawLegend(false);
             chart.setDrawXLabels(false);
             chart.setDescription("");
             chart.set3DEnabled(false);
@@ -109,6 +113,7 @@ public class EtenActivity extends Activity {
             entries.add(entry);
 
             BarDataSet dataSet = new BarDataSet(entries, "");
+            dataSet.setColors(new int[]{R.color.primary_dark, R.color.primary_dark, R.color.primary_dark, R.color.primary_dark, R.color.primary_dark, R.color.graph_current}, context);
             ArrayList<BarDataSet> sets = new ArrayList<>();
             sets.add(dataSet);
 

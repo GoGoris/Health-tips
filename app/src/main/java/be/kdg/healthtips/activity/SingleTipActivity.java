@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-/**
- * Created by school on 4/2/2015.
- */
 public class SingleTipActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -26,14 +26,14 @@ public class LoginActivity extends ActionBarActivity {
         setContentView(R.layout.activity_login);
         final Context context = this;
 
-        btnStartAuth = (Button) findViewById(R.id.btnStartAuth);
+        new InitAuthATask(context).execute(AuthManager.getInstance(context));
 
-        btnStartAuth.setOnClickListener(new OnClickListener() {
+/*        btnStartAuth.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-            new InitAuthATask(context).execute(AuthManager.getInstance(context));
+
             }
-        });
+        });*/
     }
 
 

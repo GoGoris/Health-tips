@@ -18,7 +18,6 @@ public class TipDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tip_detail);
 
-
         TextView titel = (TextView) findViewById(R.id.detailtitel);
         TextView beschrijving = (TextView) findViewById(R.id.detailbeschrijving);
 
@@ -29,8 +28,10 @@ public class TipDetailActivity extends ActionBarActivity {
         int tipnr = extras.getInt("tipnr",0);
 
         if(tipnr == 0){
-            titel.setText(extras.getString("titel","Tip niet gevonden"));
-            beschrijving.setText(extras.getString("beschrijving", "Geen data"));
+            String tipTitle = extras.getString("titel","Tip niet gevonden");
+            String tipDescription = extras.getString("beschrijving", "Geen data");
+            titel.setText(tipTitle);
+            beschrijving.setText(tipDescription);
         }else{
             TipGetter tipGetter = new TipGetter();
             Tip tip = tipGetter.getTipByNr(tipnr,this);

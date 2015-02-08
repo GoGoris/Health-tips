@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">HealthTips</string>
+    <string name="app_name">TipFit</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_fit_bit_auth">FitBitAuthActivity</string>
-    <string name="title_activity_home">HomeActivity</string>
-    <string name="welcome_home">GOEIEDAG, U BENT INGELOGD</string>
+    <string name="title_activity_fit_bit_auth">Authorizing</string>
+    <string name="title_activity_home">TipFit dashboard</string>
     <string name="login">Login</string>
-    <string name="healthtips">Health Tips</string>
-    <string name="title_activity_steps">StepsActivity</string>
-    <string name="title_activity_singletip">Tip</string>
-    <string name="hello_world">Hello world!</string>
-    <string name="title_activity_tip">TipActivity</string>
-    <string name="title_activity_tip_detail">TipDetailActivity</string>
+    <string name="title_activity_steps">Stappen</string>
+    <string name="title_activity_tip_detail">Tip</string>
     <string name="tip_categorie_gezondheid">Gezondheid</string>
     <string name="tip_categorie_slaap">Slaap</string>
     <string name="tip_categorie_stappen">Stappen</string>
     <string name="tip_categorie_lopen">Lopen</string>
     <string name="tip_categorie_fietsen">Fietsen</string>
     <string name="tip_categorie_eten">Eten</string>
-    <string name="title_activity_lopen">LopenActivity</string>
-    <string name="title_activity_slapen">SlapenActivity</string>
-    <string name="title_activity_eten">EtenActivity</string>
+    <string name="title_activity_lopen">Lopen</string>
+    <string name="title_activity_slapen">Slaap</string>
+    <string name="title_activity_eten">Voeding</string>
+    <string name="login_wait_text">Please wait...</string>
 
 </resources>

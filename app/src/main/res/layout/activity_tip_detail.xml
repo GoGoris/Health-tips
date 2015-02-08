@@ -3,21 +3,24 @@
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:orientation="vertical"
-    android:weightSum="1">
-
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/detailtitel" />
+        android:id="@+id/detailtitel"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"/>
 
     <TextView
         android:layout_width="346dp"
         android:layout_height="504dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/detailbeschrijving" />
+        android:id="@+id/detailbeschrijving"
+        android:layout_marginRight="3dp"
+        android:layout_marginEnd="3dp"
+        android:ellipsize="none"
+        android:scrollHorizontally="false"
+        />
 </LinearLayout>

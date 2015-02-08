@@ -24,6 +24,6 @@ public class SpecificNotificationThrower {
 
     public static void throwBadFoodHabit(Context context) {
         //bv. gebruiker eet elke week 1x fastfood
-        NotificationThrower.throwSpecificTip(context, NotificationThrower.IconType.T_FOOD, "Eet gewoonte", "", SingleTipActivity.class, "Slechte eetgewoontes", "U heeft de gewoonte om elke zondag -fastfood- te eten, probeer dit af te leren.");
+        NotificationThrower.throwSpecificTip(context, NotificationThrower.IconType.T_FOOD, "Eetgewoonte", "", SingleTipActivity.class, "Slechte eetgewoontes", "U heeft de gewoonte om elke zondag -fastfood- te eten, probeer dit af te leren.");
     }
 }

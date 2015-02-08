@@ -22,7 +22,6 @@ public class AutoStart extends BroadcastReceiver
 {
     DayAlarm dailyAlarm = new DayAlarm();
     WeekAlarm weeklyAlarm = new WeekAlarm();
-    MonthAlarm monthlyAlarm = new MonthAlarm();
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -30,23 +29,10 @@ public class AutoStart extends BroadcastReceiver
     {
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED"))
         {
-            //
-            try {
-                JSONObject slaapData = new GetDataATask(context).execute(new Date(),new Date(),"sleep/minutesAsleep").get();
-
-               // int minutenGeslapen = slaapData.getJSONArray();
-
-                System.out.println("test");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
-            //
-
-            dailyAlarm.SetAlarm(context);
-            weeklyAlarm.SetAlarm(context);
-            monthlyAlarm.SetAlarm(context);
+            /*
+            dailyAlarm.SetAlarmIn2Minutes(context);
+            weeklyAlarm.SetAlarmIn2Minutes(context);
+            */
         }
     }
 }

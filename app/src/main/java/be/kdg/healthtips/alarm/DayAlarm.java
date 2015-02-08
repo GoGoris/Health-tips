@@ -8,17 +8,22 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
+import be.kdg.healthtips.activity.HomeActivity;
 import be.kdg.healthtips.activity.SingleTipActivity;
 import be.kdg.healthtips.notifications.NotificationThrower;
 import be.kdg.healthtips.notifications.TipManager;
 import be.kdg.healthtips.task.GetDataATask;
 import be.kdg.healthtips.task.GetDaySleepATask;
+import be.kdg.healthtips.task.GetWeightATask;
+import be.kdg.healthtips.task.GetWeightGoalATask;
 
 /**
  * Created by school on 4/2/2015.
@@ -28,6 +33,7 @@ public class DayAlarm extends BroadcastReceiver{
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "Day Alarm", Toast.LENGTH_LONG).show();
         checkDaySleep(context);
+        checkDayWeight(context);
     }
 
     private void checkDaySleep(Context context){
@@ -51,17 +57,94 @@ public class DayAlarm extends BroadcastReceiver{
             }
 
             if (totalMinutesToFallAsleep > 20) {
-                TipManager.throwRandomFallingASleepTip("Het duurde vorige nacht " + totalMinutesToFallAsleep + " om in slaap te vallen", context);
+                TipManager.throwRandomFallingASleepTip("Het duurde vorige nacht " + totalMinutesToFallAsleep + " minuten om in slaap te vallen", context);
             }
 
             if (totalMinutesAsleep / 60 < 6) {
-                NotificationThrower.throwNotification(context, NotificationThrower.IconType.T_SLEEP, "Kort geslapen", "Voldoende nachtrust is belangrijk", SingleTipActivity.class, 555001);
+                TipManager.throwRandomSleepTip("Je hebt vorige nacht kort geslapen",context);
             }
 
             if (sleepEfficiency < 90) {
                 TipManager.throwRandomSleepTip("U slaap efficiency vorige nacht was niet zo goed", context);
             }
         }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    private void checkDayWeight(Context context){
+        try {
+            JSONObject weight = new GetWeightATask(context).execute(new Date()).get();
+            JSONObject weightGoal = new GetWeightGoalATask(context).execute().get();
+
+
+            boolean weightChange = false;
+            double huidigGewicht = 0;
+            double vorigeGewicht = 0;
+
+            double gewichtGoal;
+
+            double bmi = 0;
+            double vorigeBmi = 0;
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate = sdf.format(new Date());
+
+            JSONArray allWeights = weight.getJSONArray("weight");
+            for (int i = 0; i < allWeights.length(); i++) {
+                if(currentDate.equals(allWeights.getJSONObject(i).getString("date"))){
+                    weightChange = true;
+                    huidigGewicht = allWeights.getJSONObject(i).getDouble("weight");
+                    bmi = allWeights.getJSONObject(i).getDouble("bmi");
+                }
+            }
+
+            if(weightChange){
+                try {
+                    gewichtGoal = weightGoal.getJSONObject("goal").getDouble("weight");
+
+
+                    vorigeGewicht = allWeights.getJSONObject(allWeights.length() - 2).getDouble("weight");
+                    vorigeBmi = allWeights.getJSONObject(allWeights.length() - 2).getDouble("bmi");
+
+                    if(huidigGewicht < vorigeGewicht){
+                        NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_WEIGHT, "Gefeliciteerd","U bent afgevallen",HomeActivity.class,0);
+                    }
+
+                    if(huidigGewicht <= gewichtGoal && vorigeGewicht > gewichtGoal){
+                        NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_WEIGHT, "Gefeliciteerd","U heeft uw gewicht goal behaald",HomeActivity.class,0);
+                    }
+
+                    if(huidigGewicht <= gewichtGoal + 3 && vorigeGewicht > gewichtGoal && huidigGewicht > gewichtGoal){
+                        TipManager.throwRandomGewichtTip("U heeft uw goal bijna gehaald nog " + Math.abs(huidigGewicht - gewichtGoal) + " kg te gaan",context);
+                    }
+
+                    if(vorigeBmi >= 25 && bmi < 25){
+                        NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_WEIGHT, "Gefeliciteerd","U heeft een normale bmi behaald",HomeActivity.class,0);
+                    }
+
+
+
+                    if(vorigeGewicht < gewichtGoal + 3 && huidigGewicht > gewichtGoal + 3){
+                        TipManager.throwRandomGewichtTip("U bent buiten uw gewenst gewicht beland",context);
+                    }
+
+                    if(huidigGewicht > vorigeGewicht){
+                        TipManager.throwRandomGewichtTip("U bijgekomen, probeer af te vallen",context);
+                    }
+
+                    if(vorigeBmi <= 25 && bmi > 25){
+                        TipManager.throwRandomGewichtTip("U bent buiten de normale bmi beland",context);
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
@@ -76,6 +159,21 @@ public class DayAlarm extends BroadcastReceiver{
 
         calendar.set(Calendar.HOUR_OF_DAY, 18);
         calendar.set(Calendar.MINUTE,0);
+
+        am.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY, pi);
+    }
+
+    public void SetAlarmIn2Minutes(Context context) {
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(context, DayAlarm.class);
+        PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+
+
+        calendar.add(Calendar.SECOND,10);
 
         am.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY, pi);

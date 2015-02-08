@@ -10,7 +10,9 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 import be.kdg.healthtips.model.Tip;
 
@@ -27,6 +29,8 @@ public class TipAdapter extends ArrayAdapter<Tip> {
 
 
     }
+
+
 
     public void addTipsByCategorie(String arrayName, Context context) {
         try {
@@ -62,5 +66,6 @@ public class TipAdapter extends ArrayAdapter<Tip> {
             e.printStackTrace();
         }
     }
+
 
 }

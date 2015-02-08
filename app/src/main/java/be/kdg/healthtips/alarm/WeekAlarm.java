@@ -64,7 +64,7 @@ public class WeekAlarm extends BroadcastReceiver {
 
 
             if(nrOfTimesMetDayGoal == 7){
-                NotificationThrower.throwNotification(context, NotificationThrower.IconType.T_STEPS, "Gefeliciteerd", "Je hebt deze week elke dag je daily goal behaald! gefeliciteerd!", HomeActivity.class, 0);
+                NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS, "Gefeliciteerd", "Je hebt deze week elke dag je daily goal behaald! gefeliciteerd!", HomeActivity.class,0);
             }
 
             if(nrOfTimesMetDayGoal < 4){
@@ -72,11 +72,11 @@ public class WeekAlarm extends BroadcastReceiver {
             }
 
             if(currentWeekTotalSteps > weeklyStepGoal){
-                NotificationThrower.throwNotification(context, NotificationThrower.IconType.T_STEPS,"Gefeliciteerd","Je hebt deze week " + Math.round((double)currentWeekTotalSteps / (double)weeklyStepGoal * 100) + "% van je weekly goal behaald",HomeActivity.class,0);
+                NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS,"Gefeliciteerd","Je hebt deze week " + Math.round((double)currentWeekTotalSteps / (double)weeklyStepGoal * 100) + "% van je weekly goal behaald",HomeActivity.class,0);
             }
 
             if(currentWeekTotalSteps > lastWeekTotalSteps * 1.20){
-                NotificationThrower.throwNotification(context, NotificationThrower.IconType.T_STEPS,"Gefeliciteerd","Je hebt deze week " + Math.round(((double)currentWeekTotalSteps / (double)lastWeekTotalSteps * 100 - 100)) + "% meer steps gehaald dan vorige week",HomeActivity.class,0);
+                NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS,"Gefeliciteerd","Je hebt deze week " + Math.round(((double)currentWeekTotalSteps / (double)lastWeekTotalSteps * 100 - 100)) + "% meer steps gehaald dan vorige week",HomeActivity.class,0);
             }
 
             if(currentWeekTotalSteps < lastWeekTotalSteps * 0.8){
@@ -112,6 +112,20 @@ public class WeekAlarm extends BroadcastReceiver {
         calendar.set(Calendar.DAY_OF_WEEK,calendar.getActualMaximum(Calendar.DAY_OF_WEEK));
         calendar.set(Calendar.HOUR_OF_DAY,18);
         calendar.set(Calendar.MINUTE,0);
+
+        am.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
+                AlarmManager.INTERVAL_DAY * 7, pi);
+    }
+
+    public void SetAlarmIn2Minutes(Context context) {
+        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(context, WeekAlarm.class);
+        PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+
+        calendar.add(Calendar.SECOND,10);
 
         am.setInexactRepeating(AlarmManager.RTC, calendar.getTimeInMillis(),
                 AlarmManager.INTERVAL_DAY * 7, pi);

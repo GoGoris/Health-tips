@@ -7,6 +7,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import be.kdg.healthtips.R;
+import be.kdg.healthtips.adapter.TipAdapter;
+import be.kdg.healthtips.model.Tip;
+import be.kdg.healthtips.notifications.TipGetter;
 
 public class TipDetailActivity extends ActionBarActivity {
 
@@ -15,12 +18,29 @@ public class TipDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tip_detail);
 
+
         TextView titel = (TextView) findViewById(R.id.detailtitel);
         TextView beschrijving = (TextView) findViewById(R.id.detailbeschrijving);
 
         Bundle extras = getIntent().getExtras();
-        titel.setText(extras.getString("titel","Tip niet gevonden"));
-        beschrijving.setText(extras.getString("beschrijving", "Geen data"));
+
+
+
+        int tipnr = extras.getInt("tipnr",0);
+
+        if(tipnr == 0){
+            titel.setText(extras.getString("titel","Tip niet gevonden"));
+            beschrijving.setText(extras.getString("beschrijving", "Geen data"));
+        }else{
+            TipGetter tipGetter = new TipGetter();
+            Tip tip = tipGetter.getTipByNr(tipnr,this);
+
+            titel.setText(tip.getTitel());
+            beschrijving.setText(tip.getBeschrijving());
+        }
+
+
+
 
 
     }

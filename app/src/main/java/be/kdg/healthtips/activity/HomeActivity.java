@@ -16,11 +16,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
 import be.kdg.healthtips.R;
+import be.kdg.healthtips.alarm.DayAlarm;
+import be.kdg.healthtips.alarm.WeekAlarm;
 import be.kdg.healthtips.auth.FitbitTokenManager;
 import be.kdg.healthtips.notifications.NotificationThrower;
 import be.kdg.healthtips.notifications.TipManager;
@@ -28,6 +31,8 @@ import be.kdg.healthtips.task.GetDailyGoalATask;
 import be.kdg.healthtips.task.GetDaySleepATask;
 import be.kdg.healthtips.task.GetPeriodStepsATask;
 import be.kdg.healthtips.task.GetWeeklyGoalATask;
+import be.kdg.healthtips.task.GetWeightATask;
+import be.kdg.healthtips.task.GetWeightGoalATask;
 
 public class HomeActivity extends ActionBarActivity {
 
@@ -88,6 +93,12 @@ public class HomeActivity extends ActionBarActivity {
         setTip();
         setMotivationMessage();
         setGoal();
+
+        DayAlarm dailyAlarm = new DayAlarm();
+        WeekAlarm weeklyAlarm = new WeekAlarm();
+
+        dailyAlarm.SetAlarmIn2Minutes(context);
+        weeklyAlarm.SetAlarmIn2Minutes(context);
     }
 
     private void setTip(){
@@ -111,7 +122,6 @@ public class HomeActivity extends ActionBarActivity {
             int weeklyStepGoal = weeklyGoals.getJSONObject("goals").getInt("steps");
 
             JSONArray allSteps = stepsThisWeek.getJSONArray("activities-log-steps");
-
             int currentWeekTotalSteps = 0;
             for (int i = 0; i < allSteps.length(); i++) {
                 currentWeekTotalSteps += allSteps.getJSONObject(i).getInt("value");
@@ -126,6 +136,8 @@ public class HomeActivity extends ActionBarActivity {
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (JSONException e) {
+            e.printStackTrace();
+        }catch(Exception e){
             e.printStackTrace();
         }
         ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);

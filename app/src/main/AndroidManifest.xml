@@ -40,25 +40,18 @@
 
         <receiver android:name=".alarm.DayAlarm" />
         <receiver android:name=".alarm.WeekAlarm" />
-        <receiver android:name=".alarm.MonthAlarm" />
         <receiver android:name=".alarm.AutoStart" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".activity.TipActivity"
-            android:label="@string/title_activity_tip" >
-        </activity>
+
         <activity
             android:name=".activity.TipDetailActivity"
             android:label="@string/title_activity_tip_detail" >
         </activity>
-        <activity
-            android:name=".activity.LopenActivity"
-            android:label="@string/title_activity_lopen" >
-        </activity>
+
         <activity
             android:name=".activity.SlapenActivity"
             android:label="@string/title_activity_slapen" >

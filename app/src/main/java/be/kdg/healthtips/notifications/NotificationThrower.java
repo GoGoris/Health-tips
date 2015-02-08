@@ -23,8 +23,9 @@ import be.kdg.healthtips.activity.HomeActivity;
 public class NotificationThrower {
 
     public enum IconType{
-        //TODO: verschillende icons
-        T_FOOD(R.drawable.foodicon),T_SLEEP(R.drawable.sleepicon),T_STEPS(R.drawable.stepsicon),T_CALORIES(R.drawable.weighticon),T_WEIGHT(R.drawable.weighticon), T_RUNNING(R.drawable.runningicon);
+        T_FOOD(R.drawable.foodicon),T_SLEEP(R.drawable.sleepicon),T_STEPS(R.drawable.stepsicon),T_CALORIES(R.drawable.weighticon),T_WEIGHT(R.drawable.weighticon), T_RUNNING(R.drawable.runningicon)
+        ,F_FOOD(R.drawable.foodiconf), F_WEIGHT(R.drawable.weighticonf), F_STEPS(R.drawable.stepsiconf);
+
         private final int icon;
         IconType(int icon) { this.icon = icon; }
         public int getValue() { return icon; }
@@ -40,11 +41,10 @@ public class NotificationThrower {
 
         Intent resultIntent = new Intent(context, activity);
 
-        if(tipNr != 0) {
-            Bundle b = new Bundle();
-            b.putInt("tip", tipNr);
-            resultIntent.putExtras(b);
-        }
+        resultIntent.putExtra("tipnr",tipNr);
+
+
+        Random r = new Random();
 
 // The stack builder object will contain an artificial back stack for the
 // started Activity.
@@ -57,16 +57,16 @@ public class NotificationThrower {
         stackBuilder.addNextIntent(resultIntent);
         PendingIntent resultPendingIntent =
                 stackBuilder.getPendingIntent(
-                        0,
+                        r.nextInt(100000),
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
         mBuilder.setContentIntent(resultPendingIntent);
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
-        Random r = new Random();
 
+        int randomnr = r.nextInt(10000);
         mBuilder.setAutoCancel(true);
-        mNotificationManager.notify(r.nextInt(10000),mBuilder.build());
+        mNotificationManager.notify(randomnr,mBuilder.build());
     }
 }

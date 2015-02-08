@@ -38,57 +38,59 @@ public class WeekAlarm extends BroadcastReceiver {
             JSONObject dailyGoals = new GetDailyGoalATask(context).execute().get();
             JSONObject weeklyGoals = new GetWeeklyGoalATask(context).execute().get();
 
-            int dailyStepGoal = dailyGoals.getJSONObject("goals").getInt("steps");
-            int weeklyStepGoal = weeklyGoals.getJSONObject("goals").getInt("steps");
+            if (stepsLastTwoWeeks != null && dailyGoals != null && weeklyGoals != null) {
+                int dailyStepGoal = dailyGoals.getJSONObject("goals").getInt("steps");
+                int weeklyStepGoal = weeklyGoals.getJSONObject("goals").getInt("steps");
 
-            JSONArray allSteps = stepsLastTwoWeeks.getJSONArray("activities-log-steps");
+                JSONArray allSteps = stepsLastTwoWeeks.getJSONArray("activities-log-steps");
 
-            int currentWeekTotalSteps = 0;
-            int lastWeekTotalSteps = 0;
+                int currentWeekTotalSteps = 0;
+                int lastWeekTotalSteps = 0;
 
-            int nrOfTimesMetDayGoal = 0;
+                int nrOfTimesMetDayGoal = 0;
 
-            for (int i = 0; i < 6; i++) {
-                lastWeekTotalSteps += allSteps.getJSONObject(i).getInt("value");
-            }
-
-            for (int i = 6; i < 13; i++){
-                currentWeekTotalSteps += allSteps.getJSONObject(i).getInt("value");
-                if(allSteps.getJSONObject(i).getInt("value") >= dailyStepGoal){
-                    nrOfTimesMetDayGoal++;
+                for (int i = 0; i < 6; i++) {
+                    lastWeekTotalSteps += allSteps.getJSONObject(i).getInt("value");
                 }
-            }
 
-
-            if(nrOfTimesMetDayGoal == 7){
-                NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS, "Gefeliciteerd", "Je hebt deze week elke dag je daily goal behaald! gefeliciteerd!", HomeActivity.class,0);
-            }
-
-            if(nrOfTimesMetDayGoal < 4){
-                TipManager.throwRandomStepTip("Je hebt deze week je daily goal maar " + nrOfTimesMetDayGoal + " keer behaald", context);
-            }
-
-            if(currentWeekTotalSteps > weeklyStepGoal){
-                NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS,"Gefeliciteerd","Je hebt deze week " + Math.round((double)currentWeekTotalSteps / (double)weeklyStepGoal * 100) + "% van je weekly goal behaald",HomeActivity.class,0);
-            }
-
-            if(currentWeekTotalSteps > lastWeekTotalSteps * 1.20){
-                NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS,"Gefeliciteerd","Je hebt deze week " + Math.round(((double)currentWeekTotalSteps / (double)lastWeekTotalSteps * 100 - 100)) + "% meer steps gehaald dan vorige week",HomeActivity.class,0);
-            }
-
-            if(currentWeekTotalSteps < lastWeekTotalSteps * 0.8){
-                TipManager.throwRandomStepTip("Je hebt deze week " + Math.round((100 - ((double)currentWeekTotalSteps / (double)lastWeekTotalSteps * 100))) + "% minder steps gehaald dan vorige week",context);
-            }
-
-            if(currentWeekTotalSteps < weeklyStepGoal){
-                if(currentWeekTotalSteps < weeklyStepGoal * 0.8){
-                    TipManager.throwRandomRunningTip("Je hebt deze week slechts " + Math.round(((double)currentWeekTotalSteps / (double)weeklyStepGoal * 100)) + "% van je weekly goal behaald",context);
-                }else {
-                    TipManager.throwRandomStepTip("Je hebt deze week slechts " + Math.round(((double)currentWeekTotalSteps / (double)weeklyStepGoal * 100)) + "% van je weekly goal behaald", context);
+                for (int i = 6; i < 13; i++) {
+                    currentWeekTotalSteps += allSteps.getJSONObject(i).getInt("value");
+                    if (allSteps.getJSONObject(i).getInt("value") >= dailyStepGoal) {
+                        nrOfTimesMetDayGoal++;
+                    }
                 }
-            }
 
-            System.out.println("stop");
+
+                if (nrOfTimesMetDayGoal == 7) {
+                    NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS, "Gefeliciteerd", "Je hebt deze week elke dag je daily goal behaald! gefeliciteerd!", HomeActivity.class, 0);
+                }
+
+                if (nrOfTimesMetDayGoal < 4) {
+                    TipManager.throwRandomStepTip("Je hebt deze week je daily goal maar " + nrOfTimesMetDayGoal + " keer behaald", context);
+                }
+
+                if (currentWeekTotalSteps > weeklyStepGoal) {
+                    NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS, "Gefeliciteerd", "Je hebt deze week " + Math.round((double) currentWeekTotalSteps / (double) weeklyStepGoal * 100) + "% van je weekly goal behaald", HomeActivity.class, 0);
+                }
+
+                if (currentWeekTotalSteps > lastWeekTotalSteps * 1.20) {
+                    NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS, "Gefeliciteerd", "Je hebt deze week " + Math.round(((double) currentWeekTotalSteps / (double) lastWeekTotalSteps * 100 - 100)) + "% meer steps gehaald dan vorige week", HomeActivity.class, 0);
+                }
+
+                if (currentWeekTotalSteps < lastWeekTotalSteps * 0.8) {
+                    TipManager.throwRandomStepTip("Je hebt deze week " + Math.round((100 - ((double) currentWeekTotalSteps / (double) lastWeekTotalSteps * 100))) + "% minder steps gehaald dan vorige week", context);
+                }
+
+                if (currentWeekTotalSteps < weeklyStepGoal) {
+                    if (currentWeekTotalSteps < weeklyStepGoal * 0.8) {
+                        TipManager.throwRandomRunningTip("Je hebt deze week slechts " + Math.round(((double) currentWeekTotalSteps / (double) weeklyStepGoal * 100)) + "% van je weekly goal behaald", context);
+                    } else {
+                        TipManager.throwRandomStepTip("Je hebt deze week slechts " + Math.round(((double) currentWeekTotalSteps / (double) weeklyStepGoal * 100)) + "% van je weekly goal behaald", context);
+                    }
+                } else System.err.println("Can't get data, maybe you have no temboo credit anymore for this month?");
+
+                System.out.println("stop");
+            }
         } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }

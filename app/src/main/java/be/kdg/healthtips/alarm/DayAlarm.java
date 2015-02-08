@@ -42,7 +42,7 @@ public class DayAlarm extends BroadcastReceiver {
                 }
             }
             if (mainSleep == null) {
-                System.err.println("No data, maybe there is no Temboo credit anymore for this month?");
+                System.err.println("Can't get data, maybe you have no temboo credit anymore for this month?");
             } else {
                 int totalMinutesAsleep = mainSleep.getInt("minutesAsleep");
                 int totalMinutesToFallAsleep = mainSleep.getInt("minutesToFallAsleep");

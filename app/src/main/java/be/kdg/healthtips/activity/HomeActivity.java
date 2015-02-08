@@ -106,20 +106,22 @@ public class HomeActivity extends Activity {
             Calendar cal = Calendar.getInstance();
             cal.set(Calendar.DAY_OF_WEEK, cal.getActualMinimum(Calendar.DAY_OF_WEEK));
 
-            JSONObject stepsThisWeek = new GetPeriodStepsATask(this).execute(cal.getTime(), new Date()).get();
             JSONObject weeklyGoals = new GetWeeklyGoalATask(this).execute().get();
-            int weeklyStepGoal = weeklyGoals.getJSONObject("goals").getInt("steps");
+            JSONObject stepsThisWeek = new GetPeriodStepsATask(this).execute(cal.getTime(), new Date()).get();
+            if (weeklyGoals != null && stepsThisWeek != null) {
+                int weeklyStepGoal = weeklyGoals.getJSONObject("goals").getInt("steps");
 
-            JSONArray allSteps = stepsThisWeek.getJSONArray("activities-log-steps");
-            int currentWeekTotalSteps = 0;
-            for (int i = 0; i < allSteps.length(); i++) {
-                currentWeekTotalSteps += allSteps.getJSONObject(i).getInt("value");
-            }
+                JSONArray allSteps = stepsThisWeek.getJSONArray("activities-log-steps");
+                int currentWeekTotalSteps = 0;
+                for (int i = 0; i < allSteps.length(); i++) {
+                    currentWeekTotalSteps += allSteps.getJSONObject(i).getInt("value");
+                }
 
-            progressToReturn = (int) Math.round((double) currentWeekTotalSteps / (double) weeklyStepGoal * 100);
-            if (progressToReturn > 100) {
-                progressToReturn = 100;
-            }
+                progressToReturn = (int) Math.round((double) currentWeekTotalSteps / (double) weeklyStepGoal * 100);
+                if (progressToReturn > 100) {
+                    progressToReturn = 100;
+                }
+            } else System.err.println("Can't get data, maybe you have no temboo credit anymore for this month?");
         } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }

@@ -8,12 +8,18 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.ListView;
 
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.XLabels;
 import com.github.mikephil.charting.utils.YLabels;
 
-import java.text.SimpleDateFormat;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
@@ -21,39 +27,34 @@ import java.util.concurrent.ExecutionException;
 import be.kdg.healthtips.R;
 import be.kdg.healthtips.adapter.TipAdapter;
 import be.kdg.healthtips.listener.TipClickListener;
-import be.kdg.healthtips.task.GetStepsATask;
+import be.kdg.healthtips.task.GetDataATask;
 
 public class StepsActivity extends Activity {
+
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steps);
-        Drawable background = getResources().getDrawable(R.drawable.graph_background);
+        this.context = this;
         try {
-            final Context context = this;
-            LineChart chart = (LineChart) findViewById(R.id.stepChart);
-            chart.setDescription("Last 6 weeks");
-            chart.setDrawYValues(true); // waardes bij de punten
-            chart.setBackground(background);
-            chart.setPinchZoom(true);
-            chart.setDragEnabled(true);
-            chart.setScaleEnabled(true);
+
+            BarChart chart = (BarChart) findViewById(R.id.stepChart);
+            chart.setBackground(getResources().getDrawable(R.drawable.graph_background));
+            chart.setDrawBarShadow(false);
+            chart.setDrawYValues(true);
+            chart.setDrawLegend(false);
+            chart.setDrawXLabels(false);
+            chart.setDescription("");
+            chart.set3DEnabled(false);
             chart.setDrawGridBackground(false);
+            chart.setDrawHorizontalGrid(true);
             chart.setDrawVerticalGrid(false);
-            chart.setDrawHorizontalGrid(false);
-            chart.setHighlightEnabled(true);
-
-            LineData data = new GetStepsATask(context).execute(get6WeeksStartAndEndString()).get();
-
-            XLabels xl = chart.getXLabels();
-            xl.setTextColor(Color.WHITE);
-
-            YLabels yl = chart.getYLabels();
-            yl.setTextColor(Color.WHITE);
-
-            chart.animateX(2500);
-
+            chart.setDrawBorder(false);
+            chart.animateY(2500);
+            JSONObject jsonData = new GetDataATask(context).execute(getParameterArray()).get();
+            BarData data = generateLineDataFromJson(jsonData);
             chart.setData(data);
         } catch (InterruptedException | ExecutionException e) {
             e.printStackTrace();
@@ -72,16 +73,61 @@ public class StepsActivity extends Activity {
         return true;
     }
 
-    private String[] get6WeeksStartAndEndString() {
+    private Object[] getParameterArray() {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.WEEK_OF_YEAR, -5);
         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String[] startAndEnd = new String[2];
-        startAndEnd[0] = sdf.format(cal.getTime());
-        startAndEnd[1] = sdf.format(new Date());
+        Object[] startAndEnd = new Object[3];
+        startAndEnd[0] = cal.getTime();
+        startAndEnd[1] = new Date();
+        startAndEnd[2] = "activities/log/steps";
         return startAndEnd;
+    }
+
+    private BarData generateLineDataFromJson(JSONObject obj) {
+        BarData data = null;
+        try {
+            JSONArray arr = obj.getJSONArray("activities-log-steps");
+
+            ArrayList<BarEntry> entries = new ArrayList<>();
+            int count = 1; //Counter for days
+            int currentWeek = 1;
+            int sum = 0; //Sum of steps in the week
+            for (int i = 0; i < arr.length(); i++) {
+                if (count % 8 == 0) {
+                    BarEntry entry = new BarEntry(sum, currentWeek - 1);
+                    entries.add(entry);
+                    sum = 0;
+                    count = 1;
+                    currentWeek++;
+                }
+                JSONObject o = arr.getJSONObject(i);
+                int value = o.getInt("value");
+                sum += value;
+                count++;
+            }
+            //Add last day --not added in the loop--
+            BarEntry entry = new BarEntry(sum, currentWeek - 1);
+            entries.add(entry);
+
+            BarDataSet set = new BarDataSet(entries, "Last 6 weeks");
+            set.setColors(new int[]{R.color.primary_dark, R.color.primary_dark, R.color.primary_dark, R.color.primary_dark, R.color.primary_dark, R.color.graph_current}, context);
+            ArrayList<BarDataSet> sets = new ArrayList<>();
+            sets.add(set);
+            ArrayList<String> XLabels = new ArrayList<>();
+            XLabels.add("1");
+            XLabels.add("2");
+            XLabels.add("3");
+            XLabels.add("4");
+            XLabels.add("5");
+            XLabels.add("6");
+            data = new BarData(XLabels, sets);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return data;
     }
 
 }

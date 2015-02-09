@@ -8,11 +8,10 @@
     android:orientation="vertical"
     tools:context="be.kdg.healthtips.activity.StepsActivity">
 
-    <com.github.mikephil.charting.charts.LineChart
+    <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/stepChart"
-        android:layout_width="wrap_content"
-        android:layout_height="230dp"
-        android:layout_marginBottom="@dimen/graph_bottom_margin"
+        android:layout_width="match_parent"
+        android:layout_height="216dp"
         />
 
     <ListView

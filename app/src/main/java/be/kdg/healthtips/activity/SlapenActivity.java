@@ -26,12 +26,14 @@ import be.kdg.healthtips.task.GetDataATask;
 
 public class SlapenActivity extends Activity {
 
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slapen);
 
-        final Context context = this;
+        this.context = this;
 
         ListView lvSlapen = (ListView) findViewById(R.id.lvSlapen);
         TipAdapter adapter = new TipAdapter(this, android.R.layout.simple_list_item_1, "sleep");
@@ -43,7 +45,11 @@ public class SlapenActivity extends Activity {
             BarData barData = getBarDataFromJson(obj);
 
             BarChart chart = (BarChart) findViewById(R.id.bcSlaap);
+            chart.setBackground(getResources().getDrawable(R.drawable.graph_background));
+            chart.setDrawBarShadow(false);
             chart.setDrawYValues(true);
+            chart.setDrawLegend(false);
+            chart.setDrawXLabels(false);
             chart.setDescription("");
             chart.set3DEnabled(false);
             chart.setDrawGridBackground(false);
@@ -105,6 +111,7 @@ public class SlapenActivity extends Activity {
             entries.add(entry);
 
             BarDataSet dataSet = new BarDataSet(entries, "");
+            dataSet.setColors(new int[]{R.color.primary_dark, R.color.primary_dark, R.color.primary_dark, R.color.primary_dark, R.color.primary_dark, R.color.graph_current}, context);
             ArrayList<BarDataSet> sets = new ArrayList<>();
             sets.add(dataSet);
 

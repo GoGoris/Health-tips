@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.temboo.core.TembooException;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -20,7 +22,9 @@ import java.util.concurrent.ExecutionException;
 
 import be.kdg.healthtips.R;
 import be.kdg.healthtips.auth.FitbitTokenManager;
+import be.kdg.healthtips.notifications.NotificationThrower;
 import be.kdg.healthtips.notifications.SpecificNotificationThrower;
+import be.kdg.healthtips.notifications.TipManager;
 import be.kdg.healthtips.task.GetPeriodStepsATask;
 import be.kdg.healthtips.task.GetWeeklyGoalATask;
 
@@ -36,14 +40,6 @@ public class HomeActivity extends Activity {
             Intent intent = new Intent(this, LoginActivity.class);
             this.startActivity(intent);
         }
-
-        /*
-        CharSequence text = "accesstoken: " + tokenManager.getFitBitAccesToken() + "\naccesstoken secret: " + tokenManager.getFitBitAccesTokenSecret();
-        int duration = Toast.LENGTH_LONG;
-
-        Toast toast = Toast.makeText(this, text, duration);
-        toast.show();
-        */
 
         setContentView(R.layout.activity_home_joni);
 
@@ -74,30 +70,26 @@ public class HomeActivity extends Activity {
             }
         });
 
+        ProgressBar progressBar = (ProgressBar)findViewById(R.id.progressBar);
+        progressBar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //test triggers
+                SpecificNotificationThrower.throwBadFoodHabit(context);
+                SpecificNotificationThrower.throwYouHaveEatenBeforeSporting(context);
+                TipManager.throwRandomFallingASleepTip("Het duurde vorige nacht " + 35 + " minuten om in slaap te vallen", context);
+                NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_WEIGHT, "Gefeliciteerd", "U heeft een normale bmi behaald", HomeActivity.class, 0);
+            }
+        });
+
 
         setTip();
-        setMotivationMessage();
         setGoal();
-
-        /*
-        DayAlarm dailyAlarm = new DayAlarm();
-        WeekAlarm weeklyAlarm = new WeekAlarm();
-
-        dailyAlarm.SetAlarmIn2Minutes(context);
-        weeklyAlarm.SetAlarmIn2Minutes(context);
-*/
-        SpecificNotificationThrower.throwBadFoodHabit(this);
-        SpecificNotificationThrower.throwYouHaveEatenBeforeSporting(this);
     }
 
     private void setTip() {
         TextView tipTitle = (TextView) findViewById(R.id.tipTitle);
         tipTitle.setText("placeholder tip title");
-    }
-
-    private void setMotivationMessage() {
-        TextView motivationText = (TextView) findViewById(R.id.motivationText);
-        motivationText.setText("placeholder motivatie text");
     }
 
     private void setGoal() {
@@ -121,7 +113,8 @@ public class HomeActivity extends Activity {
                 if (progressToReturn > 100) {
                     progressToReturn = 100;
                 }
-            } else System.err.println("Can't get data, maybe you have no temboo credit anymore for this month?");
+            } else
+                System.err.println("Can't get data, maybe you have no temboo credit anymore for this month?");
         } catch (InterruptedException | ExecutionException | JSONException e) {
             e.printStackTrace();
         }

@@ -74,4 +74,54 @@ public class TipGetter {
         }
         return tipToReturn;
     }
+
+    public Tip getRandomTip(Context context) {
+        Tip tipToReturn = null;
+        try {
+            InputStream is = context.getAssets().open("tips.json");
+
+            int size = is.available();
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+            is.close();
+
+            String json = new String(buffer, "UTF-8");
+            JSONObject firstObject = new JSONObject(json);
+            Iterator<?> keys = firstObject.keys();
+
+            int numberOfTips = 0;
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                if (firstObject.get(key) instanceof JSONArray) {
+                    JSONArray subjectArray = (JSONArray) firstObject.get(key);
+                    for (int j = 0; j < subjectArray.length(); j++) {
+                        numberOfTips++;
+                    }
+                }
+            }
+
+            Random random = new Random();
+            int randomTipNr = random.nextInt(numberOfTips-1);
+            keys = firstObject.keys();
+            while (keys.hasNext()) {
+                String key = (String) keys.next();
+                if (firstObject.get(key) instanceof JSONArray) {
+                    JSONArray subjectArray = (JSONArray) firstObject.get(key);
+                    for (int j = 0; j < subjectArray.length(); j++) {
+                        JSONObject tipObject = subjectArray.getJSONObject(j);
+                        if (tipObject.getInt("tipnr") == randomTipNr) {
+                            tipToReturn = new Tip(tipObject.getInt("tipnr"), tipObject.getString("titel"), tipObject.getString("beschrijving"));
+                            tipToReturn.setOnderwerp(key);
+                        }
+                    }
+                }
+            }
+
+            return tipToReturn;
+        } catch (IOException | JSONException ex) {
+            ex.printStackTrace();
+        }
+        return tipToReturn;
+    }
 }

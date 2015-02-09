@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tipLayout"
         android:layout_alignParentBottom="true"
+        android:background="@color/tip_layout"
         >
 
         <ImageButton

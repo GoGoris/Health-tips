@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -22,8 +23,10 @@ import java.util.concurrent.ExecutionException;
 
 import be.kdg.healthtips.R;
 import be.kdg.healthtips.auth.FitbitTokenManager;
+import be.kdg.healthtips.model.Tip;
 import be.kdg.healthtips.notifications.NotificationThrower;
 import be.kdg.healthtips.notifications.SpecificNotificationThrower;
+import be.kdg.healthtips.notifications.TipGetter;
 import be.kdg.healthtips.notifications.TipManager;
 import be.kdg.healthtips.task.GetPeriodStepsATask;
 import be.kdg.healthtips.task.GetWeeklyGoalATask;
@@ -88,8 +91,43 @@ public class HomeActivity extends Activity {
     }
 
     private void setTip() {
+        final TipGetter tipGetter = new TipGetter();
+        final Tip tip = tipGetter.getRandomTip(this);
         TextView tipTitle = (TextView) findViewById(R.id.tipTitle);
-        tipTitle.setText("placeholder tip title");
+        tipTitle.setText(tip.getTitel());
+        ImageButton tipImageButton = (ImageButton) findViewById(R.id.tipButton);
+
+        LinearLayout tipVanDeDag = (LinearLayout) findViewById(R.id.tipLayout);
+        tipVanDeDag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), TipDetailActivity.class);
+                intent.putExtra("titel", tip.getTitel());
+                intent.putExtra("beschrijving", tip.getBeschrijving());
+                v.getContext().startActivity(intent);
+            }
+        });
+
+        if(tip.getOnderwerp().equals("food")){
+            tipImageButton.setBackgroundResource(R.drawable.foodicon);
+        }
+        if(tip.getOnderwerp().equals("sleep")){
+            tipImageButton.setBackgroundResource(R.drawable.sleepicon);
+        }
+        if(tip.getOnderwerp().equals("steps")){
+            tipImageButton.setBackgroundResource(R.drawable.stepsicon);
+        }
+        if(tip.getOnderwerp().equals("running")){
+            tipImageButton.setBackgroundResource(R.drawable.runningicon);
+        }
+        if(tip.getOnderwerp().equals("biking")){
+            tipImageButton.setBackgroundResource(R.drawable.bikingicon);
+        }
+        if(tip.getOnderwerp().equals("gezondheid")){
+            tipImageButton.setBackgroundResource(R.drawable.healticon);
+        }
+
+
     }
 
     private void setGoal() {

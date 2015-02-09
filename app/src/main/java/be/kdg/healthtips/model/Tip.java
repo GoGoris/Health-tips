@@ -6,6 +6,16 @@ public class Tip {
     private String titel;
     private String beschrijving;
 
+    private String onderwerp;
+
+    public String getOnderwerp() {
+        return onderwerp;
+    }
+
+    public void setOnderwerp(String onderwerp) {
+        this.onderwerp = onderwerp;
+    }
+
     public Tip(int nummer, String titel, String beschrijving) {
         this.nummer = nummer;
         this.titel = titel;

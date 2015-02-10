@@ -5,6 +5,6 @@
     <color name="accent">#00e5ff</color>
     <color name="graph_backgroundcolor">#64b5f6</color>
     <color name="graph_past">#EEECEC</color>
-    <color name="graph_current">#FF0000</color>
+    <color name="graph_current">#32CD32</color>
     <color name="tip_layout">#32CD32</color>
 </resources>

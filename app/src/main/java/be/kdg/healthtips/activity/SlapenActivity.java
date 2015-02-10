@@ -95,7 +95,7 @@ public class SlapenActivity extends Activity {
             int sum = 0; //Sum of minutes asleep in the week
             for (int i = 0; i < arr.length(); i++) {
                 if (count % 8 == 0) {
-                    BarEntry entry = new BarEntry(sum, currentWeek - 1);
+                    BarEntry entry = new BarEntry(sum / 60.0f, currentWeek - 1);
                     entries.add(entry);
                     sum = 0;
                     count = 1;
@@ -107,7 +107,7 @@ public class SlapenActivity extends Activity {
                 count++;
             }
             //Add last day --not added in the loop--
-            BarEntry entry = new BarEntry(sum, currentWeek - 1);
+            BarEntry entry = new BarEntry(sum / 60.0f, currentWeek - 1);
             entries.add(entry);
 
             BarDataSet dataSet = new BarDataSet(entries, "");

@@ -7,15 +7,23 @@ android:paddingTop="@dimen/activity_slapen_padding_top"
 android:orientation="vertical"
 tools:context="be.kdg.healthtips.activity.EtenActivity">
 
-<com.github.mikephil.charting.charts.BarChart
-    android:id="@+id/bcEten"
-    android:layout_width="match_parent"
-    android:layout_height="216dp"
-    />
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bcEten"
+        android:layout_width="match_parent"
+        android:layout_height="216dp"
+        />
 
-<ListView
-    android:id="@+id/lvEten"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/graphEtenInfo"
+        android:id="@+id/txtGraphEtenInfo"
+        android:layout_gravity="center_horizontal" />
+
+    <ListView
+        android:id="@+id/lvEten"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

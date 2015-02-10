@@ -13,6 +13,14 @@
         android:layout_height="216dp"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/graphSlapenInfo"
+        android:id="@+id/txtGraphSlapenInfo"
+        android:layout_gravity="center_horizontal" />
+
     <ListView
         android:id="@+id/lvSlapen"
         android:layout_width="match_parent"

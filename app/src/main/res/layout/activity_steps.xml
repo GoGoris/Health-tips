@@ -14,6 +14,14 @@
         android:layout_height="216dp"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/graphStepsInfo"
+        android:id="@+id/txtGraphStepsInfo"
+        android:layout_gravity="center_horizontal" />
+
     <ListView
         android:id="@+id/lvLopen"
         android:layout_width="match_parent"

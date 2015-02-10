@@ -45,9 +45,11 @@ public class AuthManager {
             TembooSession session = TembooSessionManager.getSession();
             InitializeOAuth initOAauth = new InitializeOAuth(session);
 
+
             InitializeOAuthInputSet input = initOAauth.newInputSet();
             input.set_ConsumerKey(FitbitTokenManager.getConsumerKey());
             input.set_ConsumerSecret(FitbitTokenManager.getConsumerSecret());
+
 
             InitializeOAuthResultSet results = initOAauth.execute(input);
 
@@ -76,7 +78,7 @@ public class AuthManager {
             FinalizeOAuth finOAuth = new FinalizeOAuth(session);
 
             FinalizeOAuthInputSet input = finOAuth.newInputSet();
-
+            input.set_Timeout(60000);
             input.set_CallbackID(callbackId);
             input.set_OAuthTokenSecret(oAuthToken);
             input.set_ConsumerSecret(FitbitTokenManager.getConsumerSecret());

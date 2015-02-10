@@ -44,7 +44,8 @@
             android:adjustViewBounds="false"
             android:cropToPadding="true"
             android:layout_below="@+id/progressBar"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:background="@color/accent"/>
 
             <ImageButton
                 android:layout_width="220dp"
@@ -54,7 +55,8 @@
                 android:scaleType="centerCrop"
                 android:layout_below="@+id/lopenButton"
                 android:layout_alignStart="@+id/lopenButton"
-                android:layout_toStartOf="@+id/etenButton" />
+                android:layout_toStartOf="@+id/etenButton"
+                android:background="@color/accent"/>
 
             <ImageButton
                 android:layout_width="140dp"
@@ -63,7 +65,8 @@
                 android:src="@mipmap/vegetables"
                 android:scaleType="centerCrop"
                 android:layout_alignTop="@+id/slapenButton"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:background="@color/accent"/>
 
     <LinearLayout
         android:orientation="horizontal"

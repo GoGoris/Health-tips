@@ -15,7 +15,7 @@ import be.kdg.healthtips.R;
 
 public class NotificationThrower {
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public static void throwNotification(Context context, IconType iconType, String title, String text, Class activity, int tipNr) {
         Notification.Builder mBuilder =
                 new Notification.Builder(context)
@@ -55,7 +55,7 @@ public class NotificationThrower {
         mNotificationManager.notify(randomnr, mBuilder.build());
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public static void throwSpecificTip(Context context, IconType iconType, String title, String text, Class activity, String tipTitle, String tipText) {
         Notification.Builder mBuilder =
                 new Notification.Builder(context)

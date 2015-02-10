@@ -33,6 +33,7 @@ public class FinAuthATask extends AsyncTask<AuthManager, Void, Boolean> {
 
             Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
             toast.show();
+
         }
     }
 

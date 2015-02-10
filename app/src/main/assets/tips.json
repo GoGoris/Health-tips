@@ -3,7 +3,7 @@
         {
             "tipnr": 1,
             "titel": "Hoofdkussen",
-            "beschrijving": "Heb je al eens overwogen een nieuw hoofdkussen aan te schaffen om beter te kunnen slapen?"
+            "beschrijving": "Heb je al eens overwogen om een nieuw hoofdkussen aan te schaffen om beter te kunnen slapen?"
         },
         {
             "tipnr": 2,
@@ -18,17 +18,17 @@
         {
             "tipnr": 4,
             "titel": "Weg met de GSM",
-            "beschrijving": "Wist je dat je nachtrust het meest verstoord wordt door meldingen van je gsm? Leg hem daarom nooit 's nachts op je slaapkamer of zet hem gewoon uit als je gaat slapen."
+            "beschrijving": "Wist je dat je nachtrust het meest verstoord wordt door meldingen van je gsm? Leg hem daarom nooit 's nachts op je slaapkamer of zet hem uit als je gaat slapen."
         },
         {
             "tipnr": 5,
             "titel": "Late maaltijd",
-            "beschrijving": "Het verteren van een maaltijd door de maag duurt 3 uur. Eet dus laat op de avond geen zware maaltijd meer. Je kan een stuk fruit eten in de plaats."
+            "beschrijving": "Het verteren van een maaltijd duurt gemiddeld 3 uur. Eet dus nooit een zware maaltijd laat op de avond, maar neem bijvoorbeeld een vers stuk fruit."
         },
         {
             "tipnr": 6,
             "titel": "Film kijken in bed",
-            "beschrijving": "Door het kijken naar een scherm zijn de hersenen erg actief en blijven deze ook na de film nog bezig met de verwerking ervan. Lees daarom beter een boek en gun je ogen en hersenen de rust die ze verdienen."
+            "beschrijving": "Door het kijken naar een scherm zijn de hersenen erg actief. Dit blijft ook zo na de film. Lees daarom beter een boek en gun je ogen en hersenen de rust die ze verdienen."
         }
     ],
     "steps": [
@@ -73,8 +73,8 @@
         },
         {
             "tipnr": 13,
-            "titel": "Ontdek leuke plaatsen in jou buurt",
-            "beschrijving": "Om toffe plaatsen te ontdekken moet je vaak minder ver van huis als je denkt. Neem daarom in je vrije tijd je fiets en ga de buurt ontdekken."
+            "titel": "Ontdek leuke plaatsen in jouw buurt",
+            "beschrijving": "Om toffe plaatsen te ontdekken moet je vaak minder ver van huis als je denkt. Neem daarom in je vrije tijd de fiets en ga de buurt ontdekken."
         },
         {
             "tipnr": 14,

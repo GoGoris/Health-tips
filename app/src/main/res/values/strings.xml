@@ -23,5 +23,6 @@
     <string name="graphEtenInfo">In de bovenstaande grafiek ziet u de geconsumeerde calorieën van de afgelopen 6 weken</string>
     <string name="graphSlapenInfo">In de bovenstaande grafiek ziet u de geslaapte uren van de afgelopen 6 weken</string>
     <string name="graphStepsInfo">In de bovenstaande grafiek ziet u het aantal stappen van de afgelopen 6 weken</string>
+    <string name="weekly_goal">Wekelijks doel</string>
 
 </resources>

@@ -4,7 +4,7 @@
     <color name="primary_dark">#1565c0</color>
     <color name="accent">#00e5ff</color>
     <color name="graph_backgroundcolor">#64b5f6</color>
-    <color name="graph_past">#EEECEC</color>
-    <color name="graph_current">#32CD32</color>
-    <color name="tip_layout">#32CD32</color>
+    <color name="graph_past">#eeecec</color>
+    <color name="graph_current">#8bc34a</color>
+    <color name="tip_layout">#8bc34a</color>
 </resources>

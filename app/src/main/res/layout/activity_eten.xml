@@ -22,9 +22,9 @@ tools:context="be.kdg.healthtips.activity.EtenActivity">
         android:layout_gravity="center_horizontal" />
 
     <ListView
+        android:orientation="vertical"
         android:id="@+id/lvEten"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/graph_bottom_margin"/>
-
 </LinearLayout>

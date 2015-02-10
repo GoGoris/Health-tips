@@ -1,5 +1,6 @@
 package be.kdg.healthtips.task;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -34,40 +35,29 @@ public class GetDaySleepATask extends AsyncTask<Void, Void, JSONObject> {
 
     @Override
     protected JSONObject doInBackground(Void... params) {
-        JSONObject jsonToReturn = new JSONObject();
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             TembooSession session = TembooSessionManager.getSession();
             GetSleep getSleep = new GetSleep(session);
 
             GetSleep.GetSleepInputSet input = getSleep.newInputSet();
-
             input.set_AccessToken(tokenManager.getFitBitAccesToken());
-            Calendar c = Calendar.getInstance();
-
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            c.add(Calendar.DAY_OF_YEAR, -1);
-
             input.set_Date(sdf.format(new Date()));
-
-
             input.set_AccessTokenSecret(tokenManager.getFitBitAccesTokenSecret());
             input.set_ConsumerSecret(FitbitTokenManager.getConsumerSecret());
             input.set_ConsumerKey(FitbitTokenManager.getConsumerKey());
 
-
             GetSleep.GetSleepResultSet result = getSleep.execute(input);
-
-            jsonToReturn = new JSONObject(result.get_Response());
+            return new JSONObject(result.get_Response());
         } catch (TembooException e) {
             if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }
-            e.printStackTrace();
+            System.err.println("Temboo throwed an exception, can't get sleep from Temboo API.");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return jsonToReturn;
+        return null;
     }
 }

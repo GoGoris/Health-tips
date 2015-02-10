@@ -11,8 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.temboo.core.TembooException;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,7 +42,7 @@ public class HomeActivity extends Activity {
             this.startActivity(intent);
         }
 
-        setContentView(R.layout.activity_home_joni);
+        setContentView(R.layout.activity_home);
 
         ImageButton btnSteps = (ImageButton) findViewById(R.id.lopenButton);
         btnSteps.setOnClickListener(new View.OnClickListener() {

@@ -4,56 +4,64 @@
     android:layout_height="match_parent"
     android:weightSum="1"
     android:orientation="vertical"
-    android:id="@+id/homeTopLayer">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    android:id="@+id/homeTopLayer"
+    android:padding="5dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Weekly goal progress"
+            android:text="Wekelijks doel"
             android:id="@+id/progressBarText"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp" />
 
         <ProgressBar
-            style="?android:attr/progressBarStyleHorizontal"
+            style="@style/ThickProgressBarHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="10dp"
             android:id="@+id/progressBar"
             android:layout_gravity="center_horizontal"
             android:max="100"
             android:progress="0"
-            android:indeterminate="false" />
+            android:indeterminate="false"
+            android:layout_below="@+id/progressBarText"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp" />
 
         <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="120dp"
             android:id="@+id/lopenButton"
-            android:layout_weight="0" />
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
-
-            <ImageButton
-                android:layout_width="0dp"
-                android:layout_height="120dp"
-                android:layout_weight=".65"
-                android:id="@+id/slapenButton" />
+            android:layout_weight="0"
+            android:src="@drawable/runner"
+            android:scaleType="centerCrop"
+            android:adjustViewBounds="false"
+            android:cropToPadding="true"
+            android:layout_below="@+id/progressBar"
+            android:layout_alignParentStart="true" />
 
             <ImageButton
-                android:layout_width="0dp"
+                android:layout_width="230dp"
                 android:layout_height="120dp"
-                android:layout_weight=".35"
-                android:id="@+id/etenButton"/>
-        </LinearLayout>
-    </LinearLayout>
+                android:id="@+id/slapenButton"
+                android:src="@drawable/bed"
+                android:scaleType="centerCrop"
+                android:layout_below="@+id/lopenButton"
+                android:layout_alignStart="@+id/lopenButton" />
+
+            <ImageButton
+                android:layout_width="140dp"
+                android:layout_height="120dp"
+                android:id="@+id/etenButton"
+                android:src="@mipmap/vegetables"
+                android:scaleType="centerCrop"
+                android:layout_alignTop="@+id/slapenButton"
+                android:layout_alignParentEnd="true" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -68,7 +76,8 @@
             android:layout_width="0dp"
             android:layout_height="100dp"
             android:layout_weight=".30"
-            android:id="@+id/tipButton"/>
+            android:id="@+id/tipButton"
+            android:contentDescription="@string/contentdescriptor_tipButton" />
 
         <TextView
             android:layout_width="0dp"

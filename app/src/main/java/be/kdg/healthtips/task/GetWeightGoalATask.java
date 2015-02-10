@@ -44,16 +44,16 @@ public class GetWeightGoalATask extends AsyncTask<Void, Void, JSONObject> {
 
             GetBodyWeightGoal.GetBodyWeightGoalResultSet result = getBodyWeightGoal.execute(input);
 
-            jsonToReturn = new JSONObject(result.get_Response());
+            return new JSONObject(result.get_Response());
         } catch (TembooException e) {
             if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }
-            e.printStackTrace();
+            System.err.println("Temboo throwed an exception, can't get weight goal from Temboo API.");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return jsonToReturn;
+        return null;
     }
 }

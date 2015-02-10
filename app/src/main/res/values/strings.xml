@@ -19,5 +19,6 @@
     <string name="title_activity_eten">Voeding</string>
     <string name="login_wait_text">Please wait…</string>
     <string name="please_wait">Even geduld alsjeblieft,\nje wordt ingelogd…</string>
+    <string name="contentdescriptor_tipButton">logo type tip</string>
 
 </resources>

@@ -30,11 +30,8 @@ public class GetWeeklyGoalATask extends AsyncTask<Void, Void, JSONObject> {
 
     @Override
     protected JSONObject doInBackground(Void... params) {
-        TembooSession session;
-        JSONObject jsonToReturn = null;
         try {
-            session = TembooSessionManager.getSession();
-
+            TembooSession session = TembooSessionManager.getSession();
             GetActivityWeeklyGoals getActivityWeeklyGoals = new GetActivityWeeklyGoals(session);
 
             GetActivityWeeklyGoals.GetActivityWeeklyGoalsInputSet input = getActivityWeeklyGoals.newInputSet();
@@ -44,17 +41,16 @@ public class GetWeeklyGoalATask extends AsyncTask<Void, Void, JSONObject> {
             input.set_ConsumerKey(FitbitTokenManager.getConsumerKey());
 
             GetActivityWeeklyGoals.GetActivityWeeklyGoalsResultSet result = getActivityWeeklyGoals.execute(input);
-
-            jsonToReturn = new JSONObject(result.get_Response());
+            return new JSONObject(result.get_Response());
         } catch (TembooException e) {
             if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
             }
-            e.printStackTrace();
+            System.err.println("Temboo throwed an exception, can't get weekly goal from Temboo API.");
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return jsonToReturn;
+        return null;
     }
 }

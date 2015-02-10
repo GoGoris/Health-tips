@@ -46,7 +46,6 @@ public class WeekAlarm extends BroadcastReceiver {
 
                 int currentWeekTotalSteps = 0;
                 int lastWeekTotalSteps = 0;
-
                 int nrOfTimesMetDayGoal = 0;
 
                 for (int i = 0; i < 6; i++) {
@@ -59,7 +58,6 @@ public class WeekAlarm extends BroadcastReceiver {
                         nrOfTimesMetDayGoal++;
                     }
                 }
-
 
                 if (nrOfTimesMetDayGoal == 7) {
                     NotificationThrower.throwNotification(context, NotificationThrower.IconType.F_STEPS, "Gefeliciteerd", "Je hebt deze week elke dag je daily goal behaald! gefeliciteerd!", HomeActivity.class, 0);
@@ -96,7 +94,7 @@ public class WeekAlarm extends BroadcastReceiver {
         }
     }
 
-    public void SetAlarm(Context context) {
+    public void setAlarm(Context context) {
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, WeekAlarm.class);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);
@@ -112,7 +110,7 @@ public class WeekAlarm extends BroadcastReceiver {
                 AlarmManager.INTERVAL_DAY * 7, pi);
     }
 
-    public void SetAlarmIn2Minutes(Context context) {
+    public void setAlarmIn2Minutes(Context context) {
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(context, WeekAlarm.class);
         PendingIntent pi = PendingIntent.getBroadcast(context, 0, i, 0);

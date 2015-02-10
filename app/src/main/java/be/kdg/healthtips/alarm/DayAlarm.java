@@ -1,5 +1,6 @@
 package be.kdg.healthtips.alarm;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -85,7 +86,7 @@ public class DayAlarm extends BroadcastReceiver {
             double bmi = 0;
             double vorigeBmi;
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             String currentDate = sdf.format(new Date());
 
             JSONArray allWeights = weight.getJSONArray("weight");

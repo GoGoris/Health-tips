@@ -18,7 +18,7 @@ public class AutoStart extends BroadcastReceiver
         if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED"))
         {
             dailyAlarm.SetAlarm(context);
-            weeklyAlarm.SetAlarm(context);
+            weeklyAlarm.setAlarm(context);
         }
     }
 }

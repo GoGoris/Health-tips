@@ -28,11 +28,10 @@ public class FinAuthATask extends AsyncTask<AuthManager, Void, Boolean> {
             Intent intent = new Intent(context, HomeActivity.class);
             context.startActivity(intent);
         } else {
-            // TODO ERROR
             CharSequence text = "Unable to login!";
-            int duration = Toast.LENGTH_SHORT;
+            System.err.println(text);
 
-            Toast toast = Toast.makeText(context, text, duration);
+            Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
             toast.show();
         }
     }

@@ -3,7 +3,11 @@ package be.kdg.healthtips.auth;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class    FitbitTokenManager {
+/**
+ * This class holds all the tokens for the Fitbit API
+ * It holds all the tokens and saves them in {@link android.content.SharedPreferences}, this way the user is already logged in next time he starts the app.
+ */
+public class FitbitTokenManager {
     private static final String CONSUMER_KEY = "0dc58a7d5b1349a187b74e6e82d989f5";
     private static final String CONSUMER_SECRET = "2d234d453df949a786971a9253a22f99";
     private String fitBitAccesToken;

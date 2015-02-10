@@ -1,5 +1,6 @@
 package be.kdg.healthtips.task;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import be.kdg.healthtips.activity.LoginActivity;
 import be.kdg.healthtips.auth.FitbitTokenManager;
@@ -33,20 +35,15 @@ public class GetPeriodStepsATask extends AsyncTask<Date, Void, JSONObject> {
 
     @Override
     protected JSONObject doInBackground(Date... params) {
-        JSONObject jsonToReturn = null;
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             TembooSession session = TembooSessionManager.getSession();
             GetTimeSeriesByDateRange getSteps = new GetTimeSeriesByDateRange(session);
 
             GetTimeSeriesByDateRange.GetTimeSeriesByDateRangeInputSet input = getSteps.newInputSet();
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
             input.set_StartDate(sdf.format(params[0]));
             input.set_EndDate(sdf.format(params[1]));
-
             input.set_AccessToken(tokenManager.getFitBitAccesToken());
-
             input.set_AccessTokenSecret(tokenManager.getFitBitAccesTokenSecret());
             input.set_ConsumerSecret(FitbitTokenManager.getConsumerSecret());
             input.set_ResourcePath("activities/log/steps");
@@ -54,17 +51,17 @@ public class GetPeriodStepsATask extends AsyncTask<Date, Void, JSONObject> {
 
             GetTimeSeriesByDateRange.GetTimeSeriesByDateRangeResultSet result = getSteps.execute(input);
 
-            jsonToReturn = new JSONObject(result.get_Response());
-
+            return new JSONObject(result.get_Response());
         } catch (TembooException e) {
             if (e.getMessage().contains("status code of 401")) {
                 Intent intent = new Intent(context, LoginActivity.class);
                 context.startActivity(intent);
+            } else {
+                System.err.println("Temboo throwed an exception, can't get steps from Temboo API.");
             }
-            e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return jsonToReturn;
+        return null;
     }
 }

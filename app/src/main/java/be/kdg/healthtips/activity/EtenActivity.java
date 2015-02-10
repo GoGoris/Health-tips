@@ -27,6 +27,7 @@ import be.kdg.healthtips.task.GetDataATask;
 public class EtenActivity extends Activity {
     private Context context;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

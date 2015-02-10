@@ -6,7 +6,7 @@
     android:weightSum="1"
     android:orientation="vertical"
     android:id="@+id/homeTopLayer"
-    android:padding="5dp"
+    android:padding="8dp"
     tools:context="be.kdg.healthtips.activity.HomeActivity">
 
         <TextView
@@ -22,7 +22,7 @@
             android:layout_marginBottom="10dp" />
 
         <ProgressBar
-            style="@style/ThickProgressBarHorizontal"
+            style="@android:style/Widget.Holo.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="10dp"
             android:id="@+id/progressBar"
@@ -72,19 +72,23 @@
         android:id="@+id/tipLayout"
         android:layout_alignParentBottom="true"
         android:background="@drawable/tip_of_the_day_background"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:focusable="true"
+        android:clickable="true"
         >
 
-        <ImageButton
+        <ImageView
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_weight=".30"
             android:id="@+id/tipButton"
             android:contentDescription="@string/contentdescriptor_tipButton"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:scaleType="centerInside" />
+            android:layout_marginBottom="6dp"
+            android:layout_marginTop="6dp"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:layout_width="0dp"

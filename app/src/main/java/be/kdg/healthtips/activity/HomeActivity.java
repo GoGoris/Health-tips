@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -82,7 +83,6 @@ public class HomeActivity extends Activity {
             }
         });
 
-
         setTip();
         setGoal();
     }
@@ -92,7 +92,7 @@ public class HomeActivity extends Activity {
         final Tip tip = tipGetter.getRandomTip(this);
         TextView tipTitle = (TextView) findViewById(R.id.tipTitle);
         tipTitle.setText(tip.getTitel());
-        ImageButton tipImageButton = (ImageButton) findViewById(R.id.tipButton);
+        ImageView tipImageButton = (ImageView) findViewById(R.id.tipButton);
 
         LinearLayout tipVanDeDag = (LinearLayout) findViewById(R.id.tipLayout);
         tipVanDeDag.setOnClickListener(new View.OnClickListener() {

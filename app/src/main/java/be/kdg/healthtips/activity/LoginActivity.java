@@ -11,9 +11,6 @@ import be.kdg.healthtips.auth.AuthManager;
 import be.kdg.healthtips.task.InitAuthATask;
 
 public class LoginActivity extends Activity {
-
-    private Button btnStartAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +18,6 @@ public class LoginActivity extends Activity {
         final Context context = this;
 
         new InitAuthATask(context).execute(AuthManager.getInstance(context));
-
-/*        btnStartAuth.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });*/
     }
 
 

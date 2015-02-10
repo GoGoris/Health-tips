@@ -30,7 +30,6 @@ import be.kdg.healthtips.task.GetPeriodStepsATask;
 import be.kdg.healthtips.task.GetWeeklyGoalATask;
 
 public class HomeActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

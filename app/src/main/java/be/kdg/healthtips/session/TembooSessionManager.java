@@ -9,9 +9,9 @@ import com.temboo.core.TembooSession;
  */
 public class TembooSessionManager {
     private static TembooSession session;
-    private static final String TEMBOO_KEY = "806edeec6d6a4af5841abdbb9024b73d";
-    private static final String TEMBOO_USER = "mathimarimanstudent";
-    private static final String TEMBOO_APP = "myFirstApp";
+    private static final String TEMBOO_KEY = "XgNfVeemtzX3QeqSipGWw1gIaqVj2vpo";
+    private static final String TEMBOO_USER = "steven13";
+    private static final String TEMBOO_APP = "TipFit";
 
     public static TembooSession getSession() throws TembooException {
         if(session == null) session = new TembooSession(TEMBOO_USER, TEMBOO_APP , TEMBOO_KEY);

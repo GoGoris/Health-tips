@@ -25,8 +25,8 @@ import be.kdg.healthtips.listener.TipClickListener;
 import be.kdg.healthtips.task.GetDataATask;
 
 public class EtenActivity extends Activity {
-
     private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +42,6 @@ public class EtenActivity extends Activity {
 
         try {
             JSONObject obj = new GetDataATask(context).execute(getParameterArray()).get();
-            System.out.println(obj.toString());
             BarData barData = getBarDataFromJson(obj);
             chart.setBackground(getResources().getDrawable(R.drawable.graph_background));
             chart.setDrawBarShadow(false);
@@ -61,9 +60,6 @@ public class EtenActivity extends Activity {
         catch(Exception e) {
             e.printStackTrace();
         }
-
-
-
     }
 
 
@@ -131,5 +127,4 @@ public class EtenActivity extends Activity {
 
         return barData;
     }
-
 }

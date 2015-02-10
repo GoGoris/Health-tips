@@ -5,5 +5,5 @@
     <dimen name="activity_steps_padding_top">10dp</dimen>
     <dimen name="activity_slapen_padding_top">16dp</dimen>
     <dimen name="tip_detail_margin_top">20dp</dimen>
-    <dimen name="graph_bottom_margin">10dp</dimen>
+    <dimen name="graph_bottom_margin">6dp</dimen>
 </resources>

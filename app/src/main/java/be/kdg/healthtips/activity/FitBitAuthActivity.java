@@ -15,7 +15,6 @@ import be.kdg.healthtips.auth.AuthManager;
 import be.kdg.healthtips.task.FinAuthATask;
 
 public class FitBitAuthActivity extends Activity {
-    private WebView webview;
 
     @SuppressLint("SetJavaScriptEnabled")
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
@@ -28,7 +27,7 @@ public class FitBitAuthActivity extends Activity {
 
         String url = getIntent().getStringExtra("callbackUrl");
 
-        webview = (WebView) findViewById(R.id.wvFitBit);
+        WebView webview = (WebView) findViewById(R.id.wvFitBit);
         webview.setWebViewClient(new WebViewClient());
         webview.getSettings().setJavaScriptEnabled(true);
         webview.loadUrl(url);

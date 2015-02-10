@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
     android:orientation="vertical"
     android:id="@+id/homeTopLayer"
-    android:padding="5dp">
+    android:padding="5dp"
+    tools:context="be.kdg.healthtips.activity.HomeActivity">
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,7 +54,8 @@
                 android:src="@drawable/bed"
                 android:scaleType="centerCrop"
                 android:layout_below="@+id/lopenButton"
-                android:layout_alignStart="@+id/lopenButton" />
+                android:layout_alignStart="@+id/lopenButton"
+                android:layout_toStartOf="@+id/etenButton" />
 
             <ImageButton
                 android:layout_width="140dp"
@@ -78,18 +81,20 @@
             android:layout_weight=".30"
             android:id="@+id/tipButton"
             android:contentDescription="@string/contentdescriptor_tipButton"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:scaleType="centerInside" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Tip title"
             android:id="@+id/tipTitle"
             android:layout_weight=".70"
             android:layout_gravity="center"
-            android:paddingStart="20dp"
+            android:layout_marginStart="20dp"
             />
 
     </LinearLayout>

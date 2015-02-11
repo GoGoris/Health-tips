@@ -1,4 +1,4 @@
-# FitTip
+# TipFit
 The original FitBit app already shows the facts to users. 
 Our app also gives advice to improve the users livestyle.
 

@@ -1,5 +1,7 @@
-Notice: We just started this app and it doesn't contain any usefull functionality yet.
-# Health-tips
-An app to provide health tips on top of the fitbit api.
+# FitTip
+The original FitBit app already shows the facts to users. 
+Our app also gives advice to improves the users livestyle.
 
-This projected is licensed under the terms of the ISC license.
+This app was a research project for the Student Conference Days at Karel de Grote Hogeschool.
+
+This projected is licensed under the terms of the MIT license.
